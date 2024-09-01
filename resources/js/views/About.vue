@@ -1,8 +1,6 @@
 <template>
         <div>
-            <router-link to="/admin/home"><h1>Home</h1></router-link>
-            <router-link to="/admin/about"><h1>About</h1></router-link>
-            <h1>This is about page</h1>
+            <h1>This is About page</h1>
         </div>
 </template>
 

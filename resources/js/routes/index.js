@@ -1,11 +1,12 @@
-import Home from "../views/Home.vue";
+import dashboardComponent from "../views/dashboardComponent.vue";
 import About from "../views/About";
 
 
 const route = [
     {
-        path: '/admin/home',
-        component: Home
+        path: '/admin/dashboard',
+        name: 'home',
+        component: dashboardComponent
     },
     {
         path: '/admin/about',
