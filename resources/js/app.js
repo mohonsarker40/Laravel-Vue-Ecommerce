@@ -7,13 +7,14 @@ import route from './routes'
 
 const router = new VueRouter({
     mode: 'history',
-    routes: 'route',
+    routes: route,
     linkActiveClass: 'active'
 })
 
 const vue = new Vue({
     el : '#app',
-    components : '{App}',
-    
+    components : {App},
+    router
 
 })
+
