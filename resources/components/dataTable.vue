@@ -23,12 +23,10 @@
                         <table id="datatablesSimple" class="datatable-table">
                             <thead>
                             <tr>
-                                <th>name</th>
-                                <th>name</th>
-                                <th>name</th>
-                                <th>name</th>
-                                <th>name</th>
-                                <th>name</th>
+                                <template v-for="heading in tableHeading">
+                                    <th>{{ heading }}</th>
+                                </template>
+
 
                             </tr>
                             </thead>
@@ -48,7 +46,15 @@
 
 <script>
     export default {
-        name: "dataTable"
+        name: "dataTable",
+        props: {
+            tableHeading : {
+                type : [Array, Object],
+                default(){
+                    return [];
+                }
+            }
+        }
     }
 </script>
 

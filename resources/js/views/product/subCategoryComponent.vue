@@ -3,82 +3,42 @@
 
         <page-top></page-top>
 
-        <div class="card mb-4">
-            <div class="card-body">
-                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-                    <div class="datatable-top">
-                        <div class="datatable-dropdown">
-                            <label>
-                                <select class="datatable-selector">
-                                    <option value="5">5</option>
-                                    <option value="10" selected="">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                </select> entries per page
-                            </label>
-                        </div>
-                        <div class="datatable-search">
-                            <input class="datatable-input" placeholder="Search..." type="search"
-                                   title="Search within table" aria-controls="datatablesSimple">
-                        </div>
-                    </div>
-                    <div class="datatable-container">
-                        <table id="datatablesSimple" class="datatable-table">
-                            <thead>
-                            <tr>
-                                <th>name</th>
-                                <th>name</th>
-                                <th>name</th>
-                                <th>name</th>
-                                <th>name</th>
-                                <th>name</th>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011/07/25</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="datatable-bottom">
-                        <div class="datatable-info">Showing 1 to 10 of 57 entries</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <data-table :tableHeading="tableHeading">
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>kyo</td>
+            </tr>
+        </data-table>
     </div>
 </template>
 
 <script>
     import PageTop from "../../../components/pageTop";
+    import DataTable from "../../../components/dataTable";
+    import axios from 'axios';
+
+
     export default {
         name: "subCategoryComponent",
-        components: {PageTop}
+        components: {DataTable, PageTop},
+        data(){
+            return {
+                tableHeading: ['Sl', 'name', 'Category', 'Action']
+            }
+        },
+        methods : {
+            getDataList : function () {
+                axios.get(`${baseUrl}/${this.$route.meta.dataUrl}`)
+                    .then(function (response) {
+                        console.log(response);
+                    })
+            }
+        },
+        mounted() {
+            then.getDataList();
+        }
     }
 </script>
 

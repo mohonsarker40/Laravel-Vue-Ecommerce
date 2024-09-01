@@ -2,14 +2,15 @@
         <div class="container-fluid px-4">
 
             <page-top></page-top>
-            <data-table>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
+
+            <data-table :tableHeading="tableHeading">
+                <tr v-for="(data, index) in dataList">
+                    <td> {{ index+1 }} </td>
+                    <td> {{ data.name }} </td>
+                    <td>
+                        <a href="#" ><i class="fas fa-edit"></i></a>
+                        <a href="#" ><i class="fas fa-trash-alt"></i></a>
+                    </td>
                 </tr>
             </data-table>
         </div>
@@ -18,9 +19,18 @@
 <script>
     import PageTop from "../../../components/pageTop";
     import DataTable from "../../../components/dataTable";
+
     export default {
         name: "categoryComponent",
-        components: {DataTable, PageTop}
+        components: {DataTable, PageTop},
+        data() {
+            return {
+                tableHeading: ['Sl', 'name', 'Action']
+            }
+        },
+        mounted() {
+            this.getDataList ();
+        }
     }
 </script>
 
