@@ -18,12 +18,14 @@ const route = [
     {
         path: '/admin/product/category',
         name : 'category',
-        component: categoryComponent
+        component: categoryComponent,
+        meta: {pageTitle: 'Category'}
     },
     {
         path: '/admin/product/sub_category',
         name : 'sub_category',
-        component: subCategoryComponent
+        component: subCategoryComponent,
+        meta: {pageTitle: 'SubCategory'}
     },
 ];
 
