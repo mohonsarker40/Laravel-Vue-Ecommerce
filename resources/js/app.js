@@ -14,6 +14,13 @@ import commonMixin from './mixin/commonMixin'
 Vue.mixin(httpMixin);
 Vue.mixin(commonMixin);
 
+// import toastr from 'toastr';
+// import 'toastr/build/toastr.min.css';
+// Vue.use(toastr);
+
+
+
+
 const router = new VueRouter({
     mode: 'history',
     routes: route,

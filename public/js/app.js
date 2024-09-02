@@ -60,6 +60,12 @@ __webpack_require__.r(__webpack_exports__);
     modalId: {
       type: [String],
       "default": 'myModal'
+    },
+    formData: {
+      type: [Object, Array],
+      "default": function _default() {
+        return {};
+      }
     }
   }
 });
@@ -174,7 +180,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "dashboardComponent.vue"
+  name: "dashboardComponent.vue",
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -205,7 +212,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      tableHeading: ['Sl', 'name', 'Action']
+      tableHeading: ['Sl', 'name', 'Action'],
+      dataList: []
     };
   },
   mounted: function mounted() {
@@ -420,7 +428,23 @@ var render = function render() {
     staticClass: "modal-content"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "modal-body"
-  }, [_vm._t("default")], 2), _vm._v(" "), _vm._m(1)])])])]);
+  }, [_vm._t("default")], 2), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer"
+  }, [_c("button", {
+    staticClass: "btn btn-success",
+    attrs: {
+      type: "submit"
+    },
+    on: {
+      click: _vm.submitForm
+    }
+  }, [_vm._v("Submit")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-danger",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal"
+    }
+  }, [_vm._v("Close")])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -436,24 +460,6 @@ var staticRenderFns = [function () {
       "data-bs-dismiss": "modal"
     }
   })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "modal-footer"
-  }, [_c("button", {
-    staticClass: "btn btn-success",
-    attrs: {
-      type: "submit",
-      "data-bs-dismiss": "modal"
-    }
-  }, [_vm._v("Submit")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-danger",
-    attrs: {
-      type: "button",
-      "data-bs-dismiss": "modal"
-    }
-  }, [_vm._v("Close")])]);
 }];
 render._withStripped = true;
 
@@ -956,14 +962,16 @@ var render = function render() {
       tableHeading: _vm.tableHeading
     }
   }, _vm._l(_vm.dataList, function (data, index) {
-    return _c("tr", [_c("td", [_vm._v(" " + _vm._s(index + 1) + " ")]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(data.name) + " ")]), _vm._v(" "), _c("td", [_c("a", {
+    return _c("tr", {
+      key: index
+    }, [_c("td", [_vm._v(" " + _vm._s(index + 1) + " ")]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(data.name) + " ")]), _vm._v(" "), _c("td", [_c("button", {
       staticClass: "btn btn-outline-success",
       attrs: {
         href: "#"
       }
     }, [_c("i", {
       staticClass: "fas fa-edit"
-    })]), _vm._v(" "), _c("a", {
+    })]), _vm._v(" "), _c("button", {
       staticClass: "btn btn-outline-danger",
       attrs: {
         href: "#"
@@ -971,12 +979,9 @@ var render = function render() {
     }, [_c("i", {
       staticClass: "fas fa-trash-alt"
     })])])]);
-  }), 0), _vm._v(" "), _c("form-modal", [_c("form", {
-    on: {
-      submit: function submit($event) {
-        $event.preventDefault();
-        return _vm.submitForm(_vm.formData);
-      }
+  }), 0), _vm._v(" "), _c("form-modal", {
+    attrs: {
+      "form-data": _vm.formData
     }
   }, [_c("div", {
     staticClass: "row"
@@ -1002,7 +1007,7 @@ var render = function render() {
         _vm.$set(_vm.formData, "name", $event.target.value);
       }
     }
-  })])])])])], 1);
+  })])])])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -1067,6 +1072,11 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_axios__WEBPACK_IMPORTED_MODU
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(_mixin_httpMixin_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(_mixin_commonMixin__WEBPACK_IMPORTED_MODULE_7__["default"]);
+
+// import toastr from 'toastr';
+// import 'toastr/build/toastr.min.css';
+// Vue.use(toastr);
+
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: _routes__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -1143,10 +1153,26 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm() {
       var formData = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var _this = this;
-      var URl = "".concat(baseUrl, "/").concat(this.$route.meta.dataUrl);
-      axios__WEBPACK_IMPORTED_MODULE_0__["default"].post(URl, formData).then(function (response) {
-        _this.dataList = response.data.result;
-      });
+      if (_this.formData.id) {
+        axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("".concat(baseUrl, "/").concat(this.$route.meta.dataUrl, "/").concat(_this.formData.id), _this.formData).then(function (response) {
+          _this.getDataList();
+          // _this.$toast.success('Data updated successfully!');
+          _this.openModal('myModal', 'hide');
+        })["catch"](function (error) {
+          console.error('Error updating category:', error);
+          // _this.$toast.error('Data updated Unsuccessfully!');
+        });
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(baseUrl, "/").concat(this.$route.meta.dataUrl), _this.formData).then(function (response) {
+          _this.getDataList();
+          // _this.$toast.success('Data Create successfully!');
+
+          _this.openModal('myModal', 'hide');
+        })["catch"](function (error) {
+          console.error('Error adding category:', error);
+          // _this.$toast.error('Data Create Unsuccessfully!');
+        });
+      }
     }
   }
 });
@@ -1186,7 +1212,7 @@ var route = [{
   component: _views_product_categoryComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
   meta: {
     pageTitle: 'Category Table',
-    dataUrl: 'api/categoies'
+    dataUrl: 'api/categories'
   }
 }, {
   path: '/admin/product/sub_category',
@@ -1194,7 +1220,7 @@ var route = [{
   component: _views_product_subCategoryComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
   meta: {
     pageTitle: 'SubCategory Table',
-    dataUrl: 'api/sub_categoies'
+    dataUrl: 'api/sub_categories'
   }
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (route);

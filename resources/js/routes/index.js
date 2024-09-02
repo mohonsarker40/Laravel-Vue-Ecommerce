@@ -19,13 +19,13 @@ const route = [
         path: '/admin/product/category',
         name : 'category',
         component: categoryComponent,
-        meta: {pageTitle: 'Category Table', dataUrl : 'api/categoies'}
+        meta: {pageTitle: 'Category Table', dataUrl : 'api/categories'}
     },
     {
         path: '/admin/product/sub_category',
         name : 'sub_category',
         component: subCategoryComponent,
-        meta: {pageTitle: 'SubCategory Table', dataUrl : 'api/sub_categoies'}
+        meta: {pageTitle: 'SubCategory Table', dataUrl : 'api/sub_categories'}
     },
 ];
 

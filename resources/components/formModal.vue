@@ -18,7 +18,7 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Submit</button>
+                        <button type="submit" class="btn btn-success" @click="submitForm">Submit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
 
@@ -35,6 +35,12 @@
             modalId : {
                 type : [String],
                 default : 'myModal'
+            },
+            formData : {
+                type : [Object, Array],
+                default(){
+                    return {}
+                }
             }
         }
     }

@@ -4,25 +4,25 @@
             <page-top></page-top>
 
             <data-table :tableHeading="tableHeading">
-                <tr v-for="(data, index) in dataList">
+                <tr v-for="(data, index) in dataList" :key="index">
                     <td> {{ index+1 }} </td>
                     <td> {{ data.name }} </td>
                     <td>
-                        <a href="#" class="btn btn-outline-success" ><i class="fas fa-edit"></i></a>
-                        <a href="#" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+<!--                        edit and delete button-->
+
+                        <button href="#" class="btn btn-outline-success" ><i class="fas fa-edit"></i></button>
+                        <button href="#" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
                     </td>
                 </tr>
             </data-table>
 
-            <form-modal>
-                <form @submit.prevent="submitForm(formData)">
+            <form-modal :form-data="formData">
                     <div class="row">
                         <div class="col-md-12">
                             <label>Category Name</label>
                             <input v-model="formData.name" class="form-control" type="text">
                         </div>
                     </div>
-                </form>
             </form-modal>
         </div>
 </template>
@@ -37,11 +37,12 @@
         components: {FormModal, DataTable, PageTop},
         data() {
             return {
-                tableHeading: ['Sl', 'name', 'Action']
+                tableHeading: ['Sl', 'name', 'Action'],
+                dataList: [],
             }
         },
         mounted() {
-            this.getDataList ();
+            this.getDataList();
         }
     }
 </script>

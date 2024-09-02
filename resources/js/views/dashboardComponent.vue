@@ -7,7 +7,7 @@
 <script>
     export default {
         name: "dashboardComponent.vue",
-
+        mounted() {}
     }
 </script>
 
