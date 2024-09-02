@@ -10,7 +10,9 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios);
 
 import httpMixin from './mixin/httpMixin.js'
+import commonMixin from './mixin/commonMixin'
 Vue.mixin(httpMixin);
+Vue.mixin(commonMixin);
 
 const router = new VueRouter({
     mode: 'history',
