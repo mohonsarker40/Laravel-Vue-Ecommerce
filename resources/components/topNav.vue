@@ -19,7 +19,7 @@
                     <li><a class="dropdown-item" href="#!">Settings</a></li>
                     <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" @click.prevent="logout">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -27,8 +27,22 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
-        name: "topNav"
+        name: "topNav",
+        methods: {
+            async logout() {
+                try {
+                    await axios.post('/logout');
+                    window.location.href = '/login';
+                } catch (error) {
+                    console.error('Logout error:', error);
+
+                }
+
+            }
+        }
     }
 </script>
 
