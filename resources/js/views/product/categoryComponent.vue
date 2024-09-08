@@ -18,7 +18,7 @@
                 </tr>
             </data-table>
 
-            <form-modal ref="myModal" @submit="submitForm(formData)">
+            <form-modal ref="myModal" @submit="submitForm()">
                     <div class="row">
                         <div class="col-md-12">
                             <label>Category Name</label>

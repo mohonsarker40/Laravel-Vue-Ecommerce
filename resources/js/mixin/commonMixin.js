@@ -9,7 +9,8 @@ export default {
         }
     },
     methods: {
-        openModal : function (modalId = 'myModal', formData =this.$store.getters.formData){
+        // formData =this.$store.getters.formData
+        openModal : function (modalId = 'myModal', formData = {}){
             const _this = this;
             $(`#${modalId}`).modal('show');
             _this.$store.commit('formData', formData);

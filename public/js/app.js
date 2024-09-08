@@ -1035,7 +1035,7 @@ var render = function render() {
     ref: "myModal",
     on: {
       submit: function submit($event) {
-        return _vm.submitForm(_vm.formData);
+        return _vm.submitForm();
       }
     }
   }, [_c("div", {
@@ -1202,9 +1202,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    // formData =this.$store.getters.formData
     openModal: function openModal() {
       var modalId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'myModal';
-      var formData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.$store.getters.formData;
+      var formData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var _this = this;
       $("#".concat(modalId)).modal('show');
       _this.$store.commit('formData', formData);
