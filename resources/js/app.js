@@ -11,13 +11,23 @@ Vue.use(VueAxios, axios);
 
 import httpMixin from './mixin/httpMixin.js'
 import commonMixin from './mixin/commonMixin'
+import Vuex from 'vuex'
+import VeeValidate from "vee-validate";
+
+
 Vue.mixin(httpMixin);
 Vue.mixin(commonMixin);
+Vue.use(Vuex);
 
-// import toastr from 'toastr';
-// import 'toastr/build/toastr.min.css';
-// Vue.use(toastr);
+Vue.use(VeeValidate, {
+    events : 'index.js',
+    fieldsBagName : ''
+})
 
+import Toast from 'vue-toastification';
+import 'vue-toastification/dist/index.css';
+
+Vue.use(Toast);
 
 
 
@@ -26,11 +36,15 @@ const router = new VueRouter({
     routes: route,
     linkActiveClass: 'active'
 });
+import {store as storeData} from "./store";
+const store = new Vuex.Store(storeData)
+
+
 
 const vue = new Vue({
     el : '#app',
     components : {App},
-    router,axios
+    router,axios,store
 
 });
 

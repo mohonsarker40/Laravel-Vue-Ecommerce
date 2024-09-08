@@ -10,8 +10,8 @@
                     <td>
 <!--                        edit and delete button-->
 
-                        <button href="#" class="btn btn-outline-success" ><i class="fas fa-edit"></i></button>
-                        <button href="#" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
+                        <button  class="btn btn-outline-success" ><i class="fas fa-edit"></i></button>
+                        <button  @click="deleteForm(data)" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
                     </td>
                 </tr>
             </data-table>
@@ -20,7 +20,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label>Category Name</label>
-                            <input v-model="formData.name" class="form-control" type="text">
+                            <input v-model="formData.name" class="form-control"
+                                   type="text"/>
+
                         </div>
                     </div>
             </form-modal>
@@ -32,19 +34,21 @@
     import DataTable from "../../../components/dataTable";
     import FormModal from "../../../components/formModal";
 
+
     export default {
         name: "categoryComponent",
         components: {FormModal, DataTable, PageTop},
         data() {
             return {
                 tableHeading: ['Sl', 'name', 'Action'],
-                dataList: [],
+
             }
         },
         mounted() {
-            this.getDataList();
+            this.getDataList(name);
         }
     }
+
 </script>
 
 <style scoped>

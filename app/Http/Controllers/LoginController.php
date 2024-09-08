@@ -14,6 +14,7 @@ class LoginController extends Controller
         $crediantials = $request->except('_token');
 
         $auth = Auth::attempt($crediantials);
+
         if ($auth){
             return redirect('/admin/dashboard');
         }

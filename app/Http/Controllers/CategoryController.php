@@ -8,10 +8,17 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
+
+    public $model = '';
+    public function __construct(){
+        $this->model = new Category();
+    }
+
+
     public function index()
     {
-        $data=Category::get();
-        return response()->json(['result'=>$data,'status'=>2000],200);
+        $data =  $this->model->get();
+        return response()->json(['result' => $data, 'status' => 2000], 200);
     }
 
 
@@ -62,8 +69,21 @@ class CategoryController extends Controller
     }
 
 
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+
+        try {
+            $category = $this->model->where('id', $id)->first();
+
+            if ($category) {
+                $category->delete();
+                return response()->json(['status' => 2000]);
+            }
+
+            return response()->json(['status' => 3000]);
+        } catch (\Exception $e) {
+            return response()->json(['result' => null, 'message' => $e->getMessage(), 'status' => 5000]);
+        }
     }
+
 }

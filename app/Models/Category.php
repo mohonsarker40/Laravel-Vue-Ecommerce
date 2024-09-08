@@ -8,6 +8,14 @@ use App\Models\HasFactorytory;
 
 class Category extends Model
 {
-    protected $table = 'categories';
+//    protected $table = 'categories';
     use HasFactory;
+
+    protected $fillable = ['name'];
+    public function validate($input)
+    {
+        return Validator::make($input, [
+            'name' => 'required'
+        ]);
+    }
 }
