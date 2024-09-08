@@ -2,13 +2,13 @@
     <!-- The Modal -->
     <div class="modal" :id="modalId">
         <div class="modal-dialog modal-xl ">
-            <form @submit.prevent="submitForm(formData)" >
+            <form @submit.prevent="submitForm()" >
                 <div class="modal-content">
 
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Modal Heading</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <button type="button" class="btn-close"  @click="closeModal(modalId)"></button>
                     </div>
 
                     <!-- Modal body -->
@@ -38,6 +38,18 @@
                 default : 'myModal'
             },
 
+        },
+        methods : {
+
+            submit : function (){
+                this.$emit('submit');
+            },
+            show() {
+                $(`#${this.modalId}`).modal('show');
+            },
+            closeModal() {
+                $(`#${this.modalId}`).modal('hide');
+            },
         }
     }
 

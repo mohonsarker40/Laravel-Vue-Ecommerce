@@ -29,8 +29,8 @@ export default {
                 axios.put(`${baseUrl}/${this.$route.meta.dataUrl}/${_this.formData.id}`, _this.formData)
                     .then(function (response) {
                         _this.getDataList();
-                        // _this.$toast.success('Data updated successfully!');
-                        _this.openModal('myModal', 'hide');
+                        _this.$toast.success('Category updated successfully!');
+                        _this.closeModal();
                     })
                     .catch(function (error) {
                         console.error('Error updating category:', error);
@@ -42,14 +42,14 @@ export default {
                 axios.post(`${baseUrl}/${this.$route.meta.dataUrl}`, _this.formData)
                     .then(function (response) {
                         _this.getDataList();
-                         _this.$toast.success('Data Create successfully!');
+                         _this.$toast.success('Category Create successfully!');
 
                         _this.closeModal('myModal', 'hide');
 
                     })
                     .catch(function (error) {
                         console.error('Error adding category:', error);
-                         _this.$toast.error('Data Create Unsuccessfully!');
+                         _this.$toast.error('Category Create Unsuccessfully!');
 
 
                     });
@@ -75,11 +75,11 @@ export default {
 
                 .then((response) => {
                     _this.getDataList();
-                    _this.$toast.success("Data Delete successfully!");
+                    _this.$toast.success("Category Delete successfully!");
                 })
                 .catch((error) => {
                     console.error("Error deleting category:", error);
-                    _this.$toast.error("Data Delete Unsuccessfully!");
+                    _this.$toast.error("Category Delete Unsuccessfully!");
                 })
         },
     }

@@ -61,6 +61,17 @@ __webpack_require__.r(__webpack_exports__);
       type: [String],
       "default": 'myModal'
     }
+  },
+  methods: {
+    submit: function submit() {
+      this.$emit('submit');
+    },
+    show: function show() {
+      $("#".concat(this.modalId)).modal('show');
+    },
+    closeModal: function closeModal() {
+      $("#".concat(this.modalId)).modal('hide');
+    }
   }
 });
 
@@ -242,6 +253,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getDataList(name);
+    this.$set(this.formData, 'name', '');
   }
 });
 
@@ -445,12 +457,26 @@ var render = function render() {
     on: {
       submit: function submit($event) {
         $event.preventDefault();
-        return _vm.submitForm(_vm.formData);
+        return _vm.submitForm();
       }
     }
   }, [_c("div", {
     staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticClass: "modal-header"
+  }, [_c("h4", {
+    staticClass: "modal-title"
+  }, [_vm._v("Modal Heading")]), _vm._v(" "), _c("button", {
+    staticClass: "btn-close",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.closeModal(_vm.modalId);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
     staticClass: "modal-body"
   }, [_vm._t("default")], 2), _vm._v(" "), _c("div", {
     staticClass: "modal-footer"
@@ -471,21 +497,7 @@ var render = function render() {
     }
   }, [_vm._v("Close")])])])])])]);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "modal-header"
-  }, [_c("h4", {
-    staticClass: "modal-title"
-  }, [_vm._v("Modal Heading")]), _vm._v(" "), _c("button", {
-    staticClass: "btn-close",
-    attrs: {
-      type: "button",
-      "data-bs-dismiss": "modal"
-    }
-  })]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -1001,7 +1013,12 @@ var render = function render() {
     return _c("tr", {
       key: index
     }, [_c("td", [_vm._v(" " + _vm._s(index + 1) + " ")]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(data.name) + " ")]), _vm._v(" "), _c("td", [_c("button", {
-      staticClass: "btn btn-outline-success"
+      staticClass: "btn btn-outline-success",
+      on: {
+        click: function click($event) {
+          return _vm.openEditModal(data);
+        }
+      }
     }, [_c("i", {
       staticClass: "fas fa-edit"
     })]), _vm._v(" "), _c("button", {
@@ -1015,8 +1032,11 @@ var render = function render() {
       staticClass: "fas fa-trash-alt"
     })])])]);
   }), 0), _vm._v(" "), _c("form-modal", {
-    attrs: {
-      "form-data": _vm.formData
+    ref: "myModal",
+    on: {
+      submit: function submit($event) {
+        return _vm.submitForm(_vm.formData);
+      }
     }
   }, [_c("div", {
     staticClass: "row"
@@ -1091,12 +1111,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes */ "./resources/js/routes/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.esm.min.js");
-/* harmony import */ var _mixin_httpMixin_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mixin/httpMixin.js */ "./resources/js/mixin/httpMixin.js");
-/* harmony import */ var _mixin_commonMixin__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mixin/commonMixin */ "./resources/js/mixin/commonMixin.js");
+/* harmony import */ var _mixin_httpMixin_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mixin/httpMixin.js */ "./resources/js/mixin/httpMixin.js");
+/* harmony import */ var _mixin_commonMixin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mixin/commonMixin */ "./resources/js/mixin/commonMixin.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
 /* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/esm/index.js");
 /* harmony import */ var vue_toastification_dist_index_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-toastification/dist/index.css */ "./node_modules/vue-toastification/dist/index.css");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
@@ -1107,18 +1127,39 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_axios__WEBPACK_IMPORTED_MODULE_4__["default"], axios__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(_mixin_httpMixin_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(_mixin_commonMixin__WEBPACK_IMPORTED_MODULE_7__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_axios__WEBPACK_IMPORTED_MODULE_4__["default"], axios__WEBPACK_IMPORTED_MODULE_8__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(_mixin_httpMixin_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(_mixin_commonMixin__WEBPACK_IMPORTED_MODULE_6__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_9__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vee_validate__WEBPACK_IMPORTED_MODULE_8__["default"], {
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vee_validate__WEBPACK_IMPORTED_MODULE_7__["default"], {
   events: 'index.js',
   fieldsBagName: ''
 });
+
+//global vee-validate
+// defineRule('required', value => {
+//     if (!value || !value.length) {
+//         return 'This field is required';
+//     }
+//     return true;
+// });
+// defineRule('email', value => {
+//     if (!value || !value.length) {
+//         return true;
+//     }
+//     // Check if email
+//     if (!/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/.test(value)) {
+//         return 'This field must be a valid email';
+//     }
+//     return true;
+// });
+
+//toast
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_toastification__WEBPACK_IMPORTED_MODULE_10__["default"]);
@@ -1135,7 +1176,7 @@ var vue = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
     App: _App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   router: router,
-  axios: axios__WEBPACK_IMPORTED_MODULE_5__["default"],
+  axios: axios__WEBPACK_IMPORTED_MODULE_8__["default"],
   store: store
 });
 
@@ -1163,10 +1204,10 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     openModal: function openModal() {
       var modalId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'myModal';
-      var formData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var formData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.$store.getters.formData;
       var _this = this;
       $("#".concat(modalId)).modal('show');
-      _this.$store.commit('formData', {});
+      _this.$store.commit('formData', formData);
     },
     closeModal: function closeModal() {
       var modalId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'myModal';
@@ -1182,6 +1223,19 @@ __webpack_require__.r(__webpack_exports__);
         return "".concat(baseUrl, "/").concat(customUrl);
       }
       return "".concat(baseUrl, "/").concat(_this.$route.meta.dataUrl);
+    },
+    // openEditModal(category) {
+    //     this.$store.commit('formData', category);
+    //     if (this.$refs.myModal) {
+    //         this.$refs.myModal.show();
+    //     } else {
+    //         console.error("Modal not found");
+    //     }
+    // },
+    openEditModal: function openEditModal(category) {
+      var cat = Object.assign({}, category);
+      this.$store.commit('formData', cat);
+      this.openModal('myModal', this.$store.getters.formData);
     }
   },
   computed: {
@@ -1236,8 +1290,8 @@ __webpack_require__.r(__webpack_exports__);
       if (_this.formData.id) {
         axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("".concat(baseUrl, "/").concat(this.$route.meta.dataUrl, "/").concat(_this.formData.id), _this.formData).then(function (response) {
           _this.getDataList();
-          // _this.$toast.success('Data updated successfully!');
-          _this.openModal('myModal', 'hide');
+          _this.$toast.success('Category updated successfully!');
+          _this.closeModal();
         })["catch"](function (error) {
           console.error('Error updating category:', error);
           // _this.$toast.error('Data updated Unsuccessfully!');
@@ -1245,11 +1299,11 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(baseUrl, "/").concat(this.$route.meta.dataUrl), _this.formData).then(function (response) {
           _this.getDataList();
-          _this.$toast.success('Data Create successfully!');
+          _this.$toast.success('Category Create successfully!');
           _this.closeModal('myModal', 'hide');
         })["catch"](function (error) {
           console.error('Error adding category:', error);
-          _this.$toast.error('Data Create Unsuccessfully!');
+          _this.$toast.error('Category Create Unsuccessfully!');
         });
       }
     },
@@ -1269,10 +1323,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("".concat(baseUrl, "/").concat(this.$route.meta.dataUrl, "/").concat(data.id)).then(function (response) {
         _this.getDataList();
-        _this.$toast.success("Data Delete successfully!");
+        _this.$toast.success("Category Delete successfully!");
       })["catch"](function (error) {
         console.error("Error deleting category:", error);
-        _this.$toast.error("Data Delete Unsuccessfully!");
+        _this.$toast.error("Category Delete Unsuccessfully!");
       });
     }
   }

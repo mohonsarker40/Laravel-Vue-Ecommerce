@@ -10,13 +10,15 @@
                     <td>
 <!--                        edit and delete button-->
 
-                        <button  class="btn btn-outline-success" ><i class="fas fa-edit"></i></button>
-                        <button  @click="deleteForm(data)" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
+                        <button @click="openEditModal(data)" class="btn btn-outline-success"
+                        ><i class="fas fa-edit"></i></button>
+                        <button @click="deleteForm(data)" class="btn btn-outline-danger"><i
+                                class="fas fa-trash-alt"></i></button>
                     </td>
                 </tr>
             </data-table>
 
-            <form-modal :form-data="formData">
+            <form-modal ref="myModal" @submit="submitForm(formData)">
                     <div class="row">
                         <div class="col-md-12">
                             <label>Category Name</label>
@@ -46,10 +48,11 @@
         },
         mounted() {
             this.getDataList(name);
+            this.$set(this.formData, 'name', '');
         }
     }
-
 </script>
+
 
 <style scoped>
 

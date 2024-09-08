@@ -9,10 +9,10 @@ export default {
         }
     },
     methods: {
-        openModal : function (modalId = 'myModal', formData ={}){
+        openModal : function (modalId = 'myModal', formData =this.$store.getters.formData){
             const _this = this;
             $(`#${modalId}`).modal('show');
-            _this.$store.commit('formData', {});
+            _this.$store.commit('formData', formData);
         },
 
         closeModal : function (modalId = 'myModal', formData = {}){
@@ -28,7 +28,22 @@ export default {
                 return `${baseUrl}/${customUrl}`;
             }
             return `${baseUrl}/${_this.$route.meta.dataUrl}`;
-        }
+        },
+        // openEditModal(category) {
+        //     this.$store.commit('formData', category);
+        //     if (this.$refs.myModal) {
+        //         this.$refs.myModal.show();
+        //     } else {
+        //         console.error("Modal not found");
+        //     }
+        // },
+        openEditModal(category) {
+            let cat=Object.assign({},category)
+            this.$store.commit('formData', cat);
+
+            this.openModal('myModal',this.$store.getters.formData);
+
+        },
     },
 
     computed : {
