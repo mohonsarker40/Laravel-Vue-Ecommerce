@@ -31,6 +31,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'name' => 'required'
+        ]);
+
         try {
             $category = new Category();
             $category->name = $request->input('name');
@@ -40,11 +44,31 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             return response()->json(['result' => null, 'message' => $e->getMessage(), 'status' => 5000]);
         }
+
+//        $validator = $this->model->validate($request->all());
+//
+//        if ($validator->fails()) {
+//
+//            return response()->json([
+//                'result' => $validator->erorrs(),
+//                'status' => 3000
+//            ], 200);
+//        }
+//
+//        $this->model->fill($request->all());
+//        $this->model->save();
+//
+//        return response()->json([
+//            'result' => $this->model,
+//            'status' => 2000
+//        ], 200);
+
+
     }
 
     public function show(Category $category)
     {
-        //
+
     }
 
 

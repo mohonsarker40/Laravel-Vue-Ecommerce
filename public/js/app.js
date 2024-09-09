@@ -1048,10 +1048,16 @@ var render = function render() {
       rawName: "v-model",
       value: _vm.formData.name,
       expression: "formData.name"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      name: "name"
     },
     domProps: {
       value: _vm.formData.name
@@ -1062,7 +1068,9 @@ var render = function render() {
         _vm.$set(_vm.formData, "name", $event.target.value);
       }
     }
-  })])])])], 1);
+  }), _vm._v(" "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.errors.first("name")))])])])])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -1131,13 +1139,14 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
 
 
 
+// import { defineRule } from 'vee-validate';
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_axios__WEBPACK_IMPORTED_MODULE_4__["default"], axios__WEBPACK_IMPORTED_MODULE_8__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(_mixin_httpMixin_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(_mixin_commonMixin__WEBPACK_IMPORTED_MODULE_6__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_9__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vee_validate__WEBPACK_IMPORTED_MODULE_7__["default"], {
-  events: 'index.js',
+  events: 'input',
   fieldsBagName: ''
 });
 
@@ -1262,7 +1271,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -1281,32 +1292,40 @@ __webpack_require__.r(__webpack_exports__);
     // },
     getDataList: function getDataList() {
       var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(_this.urlGenerate()).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(_this.urlGenerate()).then(function (response) {
         _this.$store.commit('dataList', response.data.result);
       });
     },
     submitForm: function submitForm() {
+      var _this2 = this;
       var formData = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var _this = this;
-      if (_this.formData.id) {
-        axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("".concat(baseUrl, "/").concat(this.$route.meta.dataUrl, "/").concat(_this.formData.id), _this.formData).then(function (response) {
-          _this.getDataList();
-          _this.$toast.success('Category updated successfully!');
-          _this.closeModal();
-        })["catch"](function (error) {
-          console.error('Error updating category:', error);
-          // _this.$toast.error('Data updated Unsuccessfully!');
-        });
-      } else {
-        axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(baseUrl, "/").concat(this.$route.meta.dataUrl), _this.formData).then(function (response) {
-          _this.getDataList();
-          _this.$toast.success('Category Create successfully!');
-          _this.closeModal('myModal', 'hide');
-        })["catch"](function (error) {
-          console.error('Error adding category:', error);
-          _this.$toast.error('Category Create Unsuccessfully!');
-        });
-      }
+      _this.$validator.validateAll().then(function (valid) {
+        if (valid) {
+          if (_this.formData.id) {
+            axios__WEBPACK_IMPORTED_MODULE_1__["default"].put("".concat(baseUrl, "/").concat(_this2.$route.meta.dataUrl, "/").concat(_this.formData.id), _this.formData).then(function (response) {
+              _this.getDataList();
+              _this.$toast.success('Category updated successfully!');
+              _this.closeModal();
+            })["catch"](function (error) {
+              console.error('Error updating category:', error);
+              // _this.$toast.error('Data updated Unsuccessfully!');
+            });
+          } else {
+            axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("".concat(baseUrl, "/").concat(_this2.$route.meta.dataUrl), _this.formData).then(function (response) {
+              _this.getDataList();
+              _this.$toast.success('Category Create successfully!');
+              _this.closeModal('myModal', 'hide');
+            })["catch"](function (error) {
+              console.error('Error adding category:', error);
+              // _this.$toast.error('Category Create Unsuccessfully!');
+            });
+          }
+        }
+      })["catch"](function (error) {
+        console.error('Validation failed:', error);
+        _this.$toast.error('Validation Failed');
+      });
     },
     // deleteForm(id) {
     //     const _this = this;
@@ -1322,7 +1341,7 @@ __webpack_require__.r(__webpack_exports__);
     // },
     deleteForm: function deleteForm(data) {
       var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("".concat(baseUrl, "/").concat(this.$route.meta.dataUrl, "/").concat(data.id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("".concat(baseUrl, "/").concat(this.$route.meta.dataUrl, "/").concat(data.id)).then(function (response) {
         _this.getDataList();
         _this.$toast.success("Category Delete successfully!");
       })["catch"](function (error) {

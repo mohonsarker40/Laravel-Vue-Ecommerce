@@ -11,7 +11,7 @@ import httpMixin from './mixin/httpMixin.js'
 import commonMixin from './mixin/commonMixin'
 import Vuex from 'vuex'
 import VeeValidate from "vee-validate";
-import { defineRule } from 'vee-validate';
+// import { defineRule } from 'vee-validate';
 
 
 Vue.use(VueAxios, axios);
@@ -19,7 +19,7 @@ Vue.mixin(httpMixin);
 Vue.mixin(commonMixin);
 Vue.use(Vuex);
 Vue.use(VeeValidate, {
-    events : 'index.js',
+    events : 'input',
     fieldsBagName : ''
 });
 

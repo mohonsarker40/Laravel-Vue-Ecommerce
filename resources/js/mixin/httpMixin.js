@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {Validate} from  'vee-validate';
 export default {
     data() {
         return {
@@ -25,35 +25,47 @@ export default {
 
         submitForm: function (formData = {}) {
             const _this = this;
-            if (_this.formData.id) {
-                axios.put(`${baseUrl}/${this.$route.meta.dataUrl}/${_this.formData.id}`, _this.formData)
-                    .then(function (response) {
-                        _this.getDataList();
-                        _this.$toast.success('Category updated successfully!');
-                        _this.closeModal();
-                    })
-                    .catch(function (error) {
-                        console.error('Error updating category:', error);
-                        // _this.$toast.error('Data updated Unsuccessfully!');
+            _this.$validator.validateAll().then((valid) => {
+
+                if (valid) {
+                    if (_this.formData.id) {
+                        axios.put(`${baseUrl}/${this.$route.meta.dataUrl}/${_this.formData.id}`, _this.formData)
+                            .then(function (response) {
+                                _this.getDataList();
+                                _this.$toast.success('Category updated successfully!');
+                                _this.closeModal();
+                            })
+                            .catch(function (error) {
+                                console.error('Error updating category:', error);
+                                // _this.$toast.error('Data updated Unsuccessfully!');
 
 
-                    });
-            } else {
-                axios.post(`${baseUrl}/${this.$route.meta.dataUrl}`, _this.formData)
-                    .then(function (response) {
-                        _this.getDataList();
-                         _this.$toast.success('Category Create successfully!');
+                            });
+                    } else {
+                        axios.post(`${baseUrl}/${this.$route.meta.dataUrl}`, _this.formData)
+                            .then(function (response) {
+                                _this.getDataList();
+                                _this.$toast.success('Category Create successfully!');
 
-                        _this.closeModal('myModal', 'hide');
+                                _this.closeModal('myModal', 'hide');
 
-                    })
-                    .catch(function (error) {
-                        console.error('Error adding category:', error);
-                         _this.$toast.error('Category Create Unsuccessfully!');
+                            })
+                            .catch(function (error) {
+                                console.error('Error adding category:', error);
+                                // _this.$toast.error('Category Create Unsuccessfully!');
 
 
-                    });
-            }
+                            });
+
+
+                    }
+                }
+            }).catch(function (error) {
+                console.error('Validation failed:', error);
+                _this.$toast.error('Validation Failed');
+            });
+
+
         },
 
         // deleteForm(id) {

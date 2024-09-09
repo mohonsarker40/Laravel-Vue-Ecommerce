@@ -22,9 +22,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label>Category Name</label>
-                            <input v-model="formData.name" class="form-control"
-                                   type="text"/>
-
+                            <input v-model="formData.name" v-validate="'required'" class="form-control"
+                                   type="text" name="name"/>
+                            <span class="text-danger" >{{ errors.first('name') }}</span>
                         </div>
                     </div>
             </form-modal>
