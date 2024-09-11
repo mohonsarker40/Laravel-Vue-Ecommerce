@@ -1,6 +1,9 @@
 <?php
 
 
+namespace App\Supports;
+
+
 trait Helper
 {
     public $model = '';

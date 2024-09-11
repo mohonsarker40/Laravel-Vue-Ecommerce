@@ -1,150 +1,109 @@
 import axios from 'axios'
-import {Validate} from  'vee-validate';
+import {Validate} from 'vee-validate';
+
 export default {
     data() {
-        return {
-            // dataList: {},
-            // formData: {},
-        }
+        return {}
     },
     methods: {
-        // getDataList: function () {
-        //     const _this = this;
-        //     axios.get(`${baseUrl}/${this.$route.meta.dataUrl}`)
-        //         .then(function (response) {
-        //             _this.dataList = response.data.result;
-        //         });
-        // },
+
+        deleteInformation : function (id, index){
+            const _this = this;
+            _this.deleteConfirmation(function (isConfirmDelete){
+                let url = `${_this.urlGenerate()}/${id}`;
+                _this.httpReq('delete', url, {}, {}, function (retData){
+                    _this.getDataList();
+                });
+            })
+        },
+
+        getRequiredData : function (array){
+            const _this = this;
+            _this.httpReq('post', _this.urlGenerate('api/required_data'), array, {}, function (retData){
+                $.each(retData.result, function (eachItem, value){
+                    _this.$set(_this.requiredData, eachItem, value);
+                });
+            });
+        },
+        httpReq : function (method, url, data = {}, params = {}, callback = false){
+            axios({
+                method: method,
+                url: url,
+                data: data,
+                params : params
+            }).then(function (res){
+                if (parseInt(res.data.status) === 5000){
+                    return;
+                }
+                if(parseInt(res.data.status) === 3000){
+                    return;
+                }
+                if (typeof callback === 'function'){
+                    callback(res.data);
+                }
+            });
+        },
+
+
         getDataList: function () {
             const _this = this;
             axios.get(_this.urlGenerate())
                 .then(function (response) {
-                    _this.$store.commit('dataList', response.data.result);
-                });
-        },
-        //
-        // submitForm: function (formData = {}, optParms = {}, callback) {
-        //     const _this = this;
-        //
-        //     _this.$validator.validateAll().then((valid) => {
-        //         if (valid) {
-        //             if (_this.formData.id) {
-        //                 axios.put(`${_this.urlGenerate()}/${_this.formData.id}`, _this.formData)
-        //                     .then(function (response) {
-        //                         _this.getDataList();
-        //                         _this.closeModal();
-        //                         _this.$toast.success("Data Update successfully!");
-        //                     })
-        //                     .catch(function (error) {
-        //                         console.error('Error updating category:', error);
-        //                         _this.$toast.error("Data Updating Unsuccessfully!");
-        //                     });
-        //             } else {
-        //                 axios.post(_this.urlGenerate(), formData)
-        //                     .then(function (res) {
-        //                         if (parseInt(res.data.status) === 2000) {
-        //                             if (optParms.modalForm === undefined) {
-        //                                 _this.closeModal();
-        //                             }
-        //                             if (optParms.reloadList === undefined) {
-        //                                 _this.getDataList();
-        //                             }
-        //                             if (typeof callback === "function") {
-        //                                 callback(res.data.result);
-        //                             }
-        //                             _this.$toast.success("Data Added successfully!");
-        //                         } else if (parseInt(res.data.status) === 3000) {
-        //                             $.each(res.data.result, function (index, errorValue) {
-        //                                 _this.$validator.errors.add({
-        //                                     id: index,
-        //                                     field: index,
-        //                                     name: index,
-        //                                     msg: errorValue[0],
-        //                                 });
-        //                             });
-        //                         } else {
-        //                             console.log('toster');
-        //                         }
-        //                     });
-        //             }
-        //         }
-        //     });
-        // },
-
-
-        submitForm: function (formData = {}) {
-            const _this = this;
-            _this.$validator.validateAll().then((valid) => {
-
-                if (valid) {
-                    if (_this.formData.id) {
-                        axios.put(`${baseUrl}/${this.$route.meta.dataUrl}/${_this.formData.id}`, _this.formData)
-                            .then(function (response) {
-                                _this.getDataList();
-                                _this.$toast.success('Category updated successfully!');
-                                _this.closeModal();
-                            })
-                            .catch(function (error) {
-                                console.error('Error updating category:', error);
-                                // _this.$toast.error('Data updated Unsuccessfully!');
-
-
-                            });
-                    } else {
-                        axios.post(`${baseUrl}/${this.$route.meta.dataUrl}`, _this.formData)
-                            .then(function (response) {
-                                _this.getDataList();
-                                _this.$toast.success('Category Create successfully!');
-
-                                _this.closeModal('myModal', 'hide');
-
-                            })
-                            .catch(function (error) {
-                                console.error('Error adding category:', error);
-                                // _this.$toast.error('Category Create Unsuccessfully!');
-
-
-                            });
-
+                    if (parseInt(response.data.status) === 2000) {
+                        _this.$store.commit('dataList', response.data.result);
+                    }
+                    if (parseInt(response.data.status) === 5000) {
 
                     }
-                }
 
-            }).catch(function (error) {
-                console.error('Validation failed:', error);
-                _this.$toast.error('Validation Failed');
-            });
-
-
+                });
         },
 
-        // deleteForm(id) {
-        //     const _this = this;
-        //     const URl = `${baseUrl}/${this.$route.meta.dataUrl}/${id}`;
-        //     axios.post(URl)
-        //         .then(function (response) {
-        //             this.$store.commit('dataList', _this.dataList.filter(item => item.id !== id));
-        //             console.log('Deleted successfully');
-        //         })
-        //         .catch(function (error) {
-        //             console.log('Delete failed', error.response.data);
-        //         });
-        // },
-         deleteForm(data) {
+
+        submitForm: function ( formData = {}, optParms = {}, callback ){
             const _this = this;
-            axios
-                .delete(`${baseUrl}/${this.$route.meta.dataUrl}/${data.id}`)
+            let method = (_this.formType === 2) ? 'put' : 'post';
+            let url = (_this.formType === 2) ? `${_this.urlGenerate()}/${_this.updateId}` : _this.urlGenerate();
 
-                .then((response) => {
-                    _this.getDataList();
-                    _this.$toast.success("Category Delete successfully!");
-                })
-                .catch((error) => {
-                    console.error("Error deleting category:", error);
-                    _this.$toast.error("Category Delete Unsuccessfully!");
-                })
-        },
+            _this.$validator.validateAll().then((valid) => {
+                if (valid){
+
+                    axios({
+                        method: method,
+                        url: url,
+                        data: formData
+                    }).then(function (res) {
+                        if (parseInt(res.data.status) === 2000) {
+                            if (optParms.modalForm === undefined) {
+                                _this.closeModal();
+                            }
+                            if (optParms.reloadList === undefined) {
+                                _this.getDataList();
+                            }
+                            if (typeof callback === "function") {
+                                callback(res.data.result);
+                            }
+
+
+                        } else if (parseInt(res.data.status) === 3000) {
+                            $.each(res.data.result, function (index, errorValue) {
+                                _this.$validator.errors.add({
+                                    id: index,
+                                    field: index,
+                                    name: index,
+                                    msg: errorValue[0],
+                                });
+                            })
+                        }  else {
+                            console.log('Unexpected status:', res.data.status);
+                            _this.$toast.error("Data submission unsuccessful!");
+                        }
+                    });
+
+                });
+            }
+
+        }
+
     }
-
-}
 

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Supports\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
 
-    public $model='';
 
+    use Helper;
     public function  __construct()
     {
         $this->model=new Category();
@@ -19,7 +20,7 @@ class CategoryController extends Controller
     public function index()
     {
         $data=$this->model->get();
-        return response()->json(['result'=>$data,'status'=>2000],200);
+        return $this->returnData(2000, $data);
     }
 
 
@@ -31,15 +32,13 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required ',
-        ]);
+        $validator = $this->model->validate($request->all());
         if ($validator->fails()){
             return response()->json(['result' => $validator->errors(), 'status' => 3000], 200);
         }
         $this->model->fill($request->all());
         $this->model->save();
-        return response()->json(['result' =>  $this->model, 'status' => 2000], 200);
+        return $this->returnData(2000, $this->model);
     }
 
 

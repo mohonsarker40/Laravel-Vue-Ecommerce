@@ -1267,9 +1267,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixin_commonMixin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mixin/commonMixin */ "./resources/js/mixin/commonMixin.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/esm/index.js");
-/* harmony import */ var vue_toastification_dist_index_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-toastification/dist/index.css */ "./node_modules/vue-toastification/dist/index.css");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/esm/index.js");
+/* harmony import */ var vue_toastification_dist_index_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-toastification/dist/index.css */ "./node_modules/vue-toastification/dist/index.css");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./helper */ "./resources/js/helper.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -1281,8 +1282,6 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
 
 
 
-// import { defineRule } from 'vee-validate';
-
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_axios__WEBPACK_IMPORTED_MODULE_4__["default"], axios__WEBPACK_IMPORTED_MODULE_8__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(_mixin_httpMixin_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(_mixin_commonMixin__WEBPACK_IMPORTED_MODULE_6__["default"]);
@@ -1291,36 +1290,22 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vee_validate__WEBPACK_IMPORTED_M
   events: 'input',
   fieldsBagName: ''
 });
-
-//global vee-validate
-// defineRule('required', value => {
-//     if (!value || !value.length) {
-//         return 'This field is required';
-//     }
-//     return true;
-// });
-// defineRule('email', value => {
-//     if (!value || !value.length) {
-//         return true;
-//     }
-//     // Check if email
-//     if (!/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/.test(value)) {
-//         return 'This field must be a valid email';
-//     }
-//     return true;
-// });
-
-//toast
-
-
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_toastification__WEBPACK_IMPORTED_MODULE_10__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: _routes__WEBPACK_IMPORTED_MODULE_3__["default"],
   linkActiveClass: 'active'
 });
 
-var store = new vuex__WEBPACK_IMPORTED_MODULE_9__["default"].Store(_store__WEBPACK_IMPORTED_MODULE_12__.store);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_9__["default"].Store(_store__WEBPACK_IMPORTED_MODULE_10__.store);
+
+//toast
+
+
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_toastification__WEBPACK_IMPORTED_MODULE_11__["default"]);
+
+//helper
+
+(0,_helper__WEBPACK_IMPORTED_MODULE_13__["default"])(store, router);
 var vue = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   el: '#app',
   components: {
@@ -1330,6 +1315,29 @@ var vue = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   axios: axios__WEBPACK_IMPORTED_MODULE_8__["default"],
   store: store
 });
+
+/***/ }),
+
+/***/ "./resources/js/helper.js":
+/*!********************************!*\
+  !*** ./resources/js/helper.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var helper = function helper(store, router) {
+  router.beforeEach(function (to, from, next) {
+    store.state.updateId = '';
+    store.state.formType = 1;
+    store.state.formData = {};
+    next(true);
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (helper);
 
 /***/ }),
 
@@ -1421,142 +1429,9 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************!*\
   !*** ./resources/js/mixin/httpMixin.js ***!
   \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      // dataList: {},
-      // formData: {},
-    };
-  },
-  methods: {
-    // getDataList: function () {
-    //     const _this = this;
-    //     axios.get(`${baseUrl}/${this.$route.meta.dataUrl}`)
-    //         .then(function (response) {
-    //             _this.dataList = response.data.result;
-    //         });
-    // },
-    getDataList: function getDataList() {
-      var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(_this.urlGenerate()).then(function (response) {
-        _this.$store.commit('dataList', response.data.result);
-      });
-    },
-    //
-    // submitForm: function (formData = {}, optParms = {}, callback) {
-    //     const _this = this;
-    //
-    //     _this.$validator.validateAll().then((valid) => {
-    //         if (valid) {
-    //             if (_this.formData.id) {
-    //                 axios.put(`${_this.urlGenerate()}/${_this.formData.id}`, _this.formData)
-    //                     .then(function (response) {
-    //                         _this.getDataList();
-    //                         _this.closeModal();
-    //                         _this.$toast.success("Data Update successfully!");
-    //                     })
-    //                     .catch(function (error) {
-    //                         console.error('Error updating category:', error);
-    //                         _this.$toast.error("Data Updating Unsuccessfully!");
-    //                     });
-    //             } else {
-    //                 axios.post(_this.urlGenerate(), formData)
-    //                     .then(function (res) {
-    //                         if (parseInt(res.data.status) === 2000) {
-    //                             if (optParms.modalForm === undefined) {
-    //                                 _this.closeModal();
-    //                             }
-    //                             if (optParms.reloadList === undefined) {
-    //                                 _this.getDataList();
-    //                             }
-    //                             if (typeof callback === "function") {
-    //                                 callback(res.data.result);
-    //                             }
-    //                             _this.$toast.success("Data Added successfully!");
-    //                         } else if (parseInt(res.data.status) === 3000) {
-    //                             $.each(res.data.result, function (index, errorValue) {
-    //                                 _this.$validator.errors.add({
-    //                                     id: index,
-    //                                     field: index,
-    //                                     name: index,
-    //                                     msg: errorValue[0],
-    //                                 });
-    //                             });
-    //                         } else {
-    //                             console.log('toster');
-    //                         }
-    //                     });
-    //             }
-    //         }
-    //     });
-    // },
-
-    submitForm: function submitForm() {
-      var _this2 = this;
-      var formData = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      var _this = this;
-      _this.$validator.validateAll().then(function (valid) {
-        if (valid) {
-          if (_this.formData.id) {
-            axios__WEBPACK_IMPORTED_MODULE_1__["default"].put("".concat(baseUrl, "/").concat(_this2.$route.meta.dataUrl, "/").concat(_this.formData.id), _this.formData).then(function (response) {
-              _this.getDataList();
-              _this.$toast.success('Category updated successfully!');
-              _this.closeModal();
-            })["catch"](function (error) {
-              console.error('Error updating category:', error);
-              // _this.$toast.error('Data updated Unsuccessfully!');
-            });
-          } else {
-            axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("".concat(baseUrl, "/").concat(_this2.$route.meta.dataUrl), _this.formData).then(function (response) {
-              _this.getDataList();
-              _this.$toast.success('Category Create successfully!');
-              _this.closeModal('myModal', 'hide');
-            })["catch"](function (error) {
-              console.error('Error adding category:', error);
-              // _this.$toast.error('Category Create Unsuccessfully!');
-            });
-          }
-        }
-      })["catch"](function (error) {
-        console.error('Validation failed:', error);
-        _this.$toast.error('Validation Failed');
-      });
-    },
-    // deleteForm(id) {
-    //     const _this = this;
-    //     const URl = `${baseUrl}/${this.$route.meta.dataUrl}/${id}`;
-    //     axios.post(URl)
-    //         .then(function (response) {
-    //             this.$store.commit('dataList', _this.dataList.filter(item => item.id !== id));
-    //             console.log('Deleted successfully');
-    //         })
-    //         .catch(function (error) {
-    //             console.log('Delete failed', error.response.data);
-    //         });
-    // },
-    deleteForm: function deleteForm(data) {
-      var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("".concat(baseUrl, "/").concat(this.$route.meta.dataUrl, "/").concat(data.id)).then(function (response) {
-        _this.getDataList();
-        _this.$toast.success("Category Delete successfully!");
-      })["catch"](function (error) {
-        console.error("Error deleting category:", error);
-        _this.$toast.error("Category Delete Unsuccessfully!");
-      });
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /var/www/html/class/laravelvue/resources/js/mixin/httpMixin.js: Unexpected token (64:17)\n\n\u001b[0m \u001b[90m 62 |\u001b[39m                     })\n \u001b[90m 63 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 64 |\u001b[39m                 }\u001b[33m,\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 65 |\u001b[39m             }\u001b[33m,\u001b[39m\n \u001b[90m 66 |\u001b[39m         }\u001b[33m,\u001b[39m\n \u001b[90m 67 |\u001b[39m\u001b[0m\n    at constructor (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:362:19)\n    at Parser.raise (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:3260:19)\n    at Parser.unexpected (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:3280:16)\n    at Parser.parseExprAtom (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10968:16)\n    at Parser.parseExprSubscripts (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10584:23)\n    at Parser.parseUpdate (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10569:21)\n    at Parser.parseMaybeUnary (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10549:23)\n    at Parser.parseMaybeUnaryOrPrivate (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10403:61)\n    at Parser.parseExprOps (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10408:23)\n    at Parser.parseMaybeConditional (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10385:23)\n    at Parser.parseMaybeAssign (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10348:21)\n    at Parser.parseExpressionBase (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10302:23)\n    at /var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10298:39\n    at Parser.allowInAnd (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:11928:16)\n    at Parser.parseExpression (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10298:17)\n    at Parser.parseStatementContent (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:12372:23)\n    at Parser.parseStatementLike (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:12239:17)\n    at Parser.parseStatementListItem (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:12219:17)\n    at Parser.parseBlockOrModuleBlockBody (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:12792:61)\n    at Parser.parseBlockBody (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:12785:10)\n    at Parser.parseBlock (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:12773:10)\n    at Parser.parseFunctionBody (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:11618:24)\n    at Parser.parseArrowExpression (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:11593:10)\n    at Parser.parseParenAndDistinguishExpression (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:11207:12)\n    at Parser.parseExprAtom (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10851:23)\n    at Parser.parseExprSubscripts (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10584:23)\n    at Parser.parseUpdate (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10569:21)\n    at Parser.parseMaybeUnary (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10549:23)\n    at Parser.parseMaybeUnaryOrPrivate (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10403:61)\n    at Parser.parseExprOps (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10408:23)\n    at Parser.parseMaybeConditional (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10385:23)\n    at Parser.parseMaybeAssign (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10348:21)\n    at /var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10318:39\n    at Parser.allowInAnd (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:11933:12)\n    at Parser.parseMaybeAssignAllowIn (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10318:17)\n    at Parser.parseExprListItem (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:11693:18)\n    at Parser.parseCallExpressionArguments (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10770:22)\n    at Parser.parseCoverCallAndAsyncArrowHead (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10687:29)\n    at Parser.parseSubscript (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10624:19)\n    at Parser.parseSubscripts (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10597:19)\n    at Parser.parseExprSubscripts (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10588:17)\n    at Parser.parseUpdate (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10569:21)\n    at Parser.parseMaybeUnary (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10549:23)\n    at Parser.parseMaybeUnaryOrPrivate (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10403:61)\n    at Parser.parseExprOps (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10408:23)\n    at Parser.parseMaybeConditional (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10385:23)\n    at Parser.parseMaybeAssign (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10348:21)\n    at Parser.parseExpressionBase (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10302:23)\n    at /var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:10298:39\n    at Parser.allowInAnd (/var/www/html/class/laravelvue/node_modules/@babel/parser/lib/index.js:11928:16)");
 
 /***/ }),
 
