@@ -22,9 +22,20 @@
                     </a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <router-link class="nav-link" to="/admin/product/category">Category</router-link>
-                            <router-link class="nav-link" to="/admin/product/sub_category">SubCategory</router-link>
-                            <router-link class="nav-link" to="/admin/product/product">Product</router-link>
+                            <router-link class="nav-link" to="/admin/product/category">
+                                <i class="fas fa-arrow-right px-2"></i>
+                                Category
+                            </router-link>
+
+                            <router-link class="nav-link" to="/admin/product/sub_category">
+                                <i class="fas fa-arrow-right px-2"></i>
+                                SubCategory
+                            </router-link>
+
+                            <router-link class="nav-link" to="/admin/product/product">
+                                <i class="fas fa-arrow-right px-2"></i>
+                                Product
+                            </router-link>
                         </nav>
                     </div>
 

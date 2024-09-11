@@ -1,6 +1,6 @@
 <template>
         <div>
-            <h1>This is About page</h1>
+            <h1>This is About page. My name is Mohon Sarker</h1>
         </div>
 </template>
 

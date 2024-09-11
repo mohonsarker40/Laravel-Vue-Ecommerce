@@ -22,6 +22,55 @@ export default {
                     _this.$store.commit('dataList', response.data.result);
                 });
         },
+        //
+        // submitForm: function (formData = {}, optParms = {}, callback) {
+        //     const _this = this;
+        //
+        //     _this.$validator.validateAll().then((valid) => {
+        //         if (valid) {
+        //             if (_this.formData.id) {
+        //                 axios.put(`${_this.urlGenerate()}/${_this.formData.id}`, _this.formData)
+        //                     .then(function (response) {
+        //                         _this.getDataList();
+        //                         _this.closeModal();
+        //                         _this.$toast.success("Data Update successfully!");
+        //                     })
+        //                     .catch(function (error) {
+        //                         console.error('Error updating category:', error);
+        //                         _this.$toast.error("Data Updating Unsuccessfully!");
+        //                     });
+        //             } else {
+        //                 axios.post(_this.urlGenerate(), formData)
+        //                     .then(function (res) {
+        //                         if (parseInt(res.data.status) === 2000) {
+        //                             if (optParms.modalForm === undefined) {
+        //                                 _this.closeModal();
+        //                             }
+        //                             if (optParms.reloadList === undefined) {
+        //                                 _this.getDataList();
+        //                             }
+        //                             if (typeof callback === "function") {
+        //                                 callback(res.data.result);
+        //                             }
+        //                             _this.$toast.success("Data Added successfully!");
+        //                         } else if (parseInt(res.data.status) === 3000) {
+        //                             $.each(res.data.result, function (index, errorValue) {
+        //                                 _this.$validator.errors.add({
+        //                                     id: index,
+        //                                     field: index,
+        //                                     name: index,
+        //                                     msg: errorValue[0],
+        //                                 });
+        //                             });
+        //                         } else {
+        //                             console.log('toster');
+        //                         }
+        //                     });
+        //             }
+        //         }
+        //     });
+        // },
+
 
         submitForm: function (formData = {}) {
             const _this = this;
@@ -60,6 +109,7 @@ export default {
 
                     }
                 }
+
             }).catch(function (error) {
                 console.error('Validation failed:', error);
                 _this.$toast.error('Validation Failed');

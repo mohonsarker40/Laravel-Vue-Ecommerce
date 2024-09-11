@@ -252,7 +252,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.getDataList(name);
+    this.getDataList();
     this.$set(this.formData, 'name', '');
   }
 });
@@ -611,17 +611,23 @@ var render = function render() {
     attrs: {
       to: "/admin/product/category"
     }
-  }, [_vm._v("Category")]), _vm._v(" "), _c("router-link", {
+  }, [_c("i", {
+    staticClass: "fas fa-arrow-right px-2"
+  }), _vm._v("\n                                Category\n                            ")]), _vm._v(" "), _c("router-link", {
     staticClass: "nav-link",
     attrs: {
       to: "/admin/product/sub_category"
     }
-  }, [_vm._v("SubCategory")]), _vm._v(" "), _c("router-link", {
+  }, [_c("i", {
+    staticClass: "fas fa-arrow-right px-2"
+  }), _vm._v("\n                                SubCategory\n                            ")]), _vm._v(" "), _c("router-link", {
     staticClass: "nav-link",
     attrs: {
       to: "/admin/product/product"
     }
-  }, [_vm._v("Product")])], 1)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
+  }, [_c("i", {
+    staticClass: "fas fa-arrow-right px-2"
+  }), _vm._v("\n                                Product\n                            ")])], 1)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "collapse",
     attrs: {
       id: "collapseLayouts2",
@@ -954,7 +960,7 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("This is About page")])]);
+  return _c("div", [_c("h1", [_vm._v("This is About page. My name is Mohon Sarker")])]);
 }];
 render._withStripped = true;
 
@@ -976,12 +982,150 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
+  return _c("div", [_c("main", [_c("div", {
+    staticClass: "container-fluid px-4"
+  }, [_c("h1", {
+    staticClass: "mt-4"
+  }, [_vm._v("Dashboard")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-xl-3 col-md-6"
+  }, [_c("div", {
+    staticClass: "card bg-primary text-white mb-4"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_vm._v("Blue")]), _vm._v(" "), _c("div", {
+    staticClass: "card-footer d-flex align-items-center justify-content-between"
+  }, [_c("a", {
+    staticClass: "small text-white stretched-link",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("View Details")]), _vm._v(" "), _c("div", {
+    staticClass: "small text-white"
+  }, [_c("svg", {
+    staticClass: "svg-inline--fa fa-angle-right",
+    attrs: {
+      "aria-hidden": "true",
+      focusable: "false",
+      "data-prefix": "fas",
+      "data-icon": "angle-right",
+      role: "img",
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 256 512",
+      "data-fa-i2svg": ""
+    }
+  }, [_c("path", {
+    attrs: {
+      fill: "currentColor",
+      d: "M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
+    }
+  })])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-xl-3 col-md-6"
+  }, [_c("div", {
+    staticClass: "card bg-warning text-white mb-4"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_vm._v("Yellow")]), _vm._v(" "), _c("div", {
+    staticClass: "card-footer d-flex align-items-center justify-content-between"
+  }, [_c("a", {
+    staticClass: "small text-white stretched-link",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("View Details")]), _vm._v(" "), _c("div", {
+    staticClass: "small text-white"
+  }, [_c("svg", {
+    staticClass: "svg-inline--fa fa-angle-right",
+    attrs: {
+      "aria-hidden": "true",
+      focusable: "false",
+      "data-prefix": "fas",
+      "data-icon": "angle-right",
+      role: "img",
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 256 512",
+      "data-fa-i2svg": ""
+    }
+  }, [_c("path", {
+    attrs: {
+      fill: "currentColor",
+      d: "M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
+    }
+  })])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-xl-3 col-md-6"
+  }, [_c("div", {
+    staticClass: "card bg-success text-white mb-4"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_vm._v("Green")]), _vm._v(" "), _c("div", {
+    staticClass: "card-footer d-flex align-items-center justify-content-between"
+  }, [_c("a", {
+    staticClass: "small text-white stretched-link",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("View Details")]), _vm._v(" "), _c("div", {
+    staticClass: "small text-white"
+  }, [_c("svg", {
+    staticClass: "svg-inline--fa fa-angle-right",
+    attrs: {
+      "aria-hidden": "true",
+      focusable: "false",
+      "data-prefix": "fas",
+      "data-icon": "angle-right",
+      role: "img",
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 256 512",
+      "data-fa-i2svg": ""
+    }
+  }, [_c("path", {
+    attrs: {
+      fill: "currentColor",
+      d: "M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
+    }
+  })])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-xl-3 col-md-6"
+  }, [_c("div", {
+    staticClass: "card bg-danger text-white mb-4"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_vm._v("Red")]), _vm._v(" "), _c("div", {
+    staticClass: "card-footer d-flex align-items-center justify-content-between"
+  }, [_c("a", {
+    staticClass: "small text-white stretched-link",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("View Details")]), _vm._v(" "), _c("div", {
+    staticClass: "small text-white"
+  }, [_c("svg", {
+    staticClass: "svg-inline--fa fa-angle-right",
+    attrs: {
+      "aria-hidden": "true",
+      focusable: "false",
+      "data-prefix": "fas",
+      "data-icon": "angle-right",
+      role: "img",
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 256 512",
+      "data-fa-i2svg": ""
+    }
+  }, [_c("path", {
+    attrs: {
+      fill: "currentColor",
+      d: "M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
+    }
+  })])])])])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("This is Home page")])]);
+  return _c("ol", {
+    staticClass: "breadcrumb mb-4"
+  }, [_c("li", {
+    staticClass: "breadcrumb-item active"
+  }, [_vm._v("Dashboard")])]);
 }];
 render._withStripped = true;
 
@@ -1035,7 +1179,7 @@ var render = function render() {
     ref: "myModal",
     on: {
       submit: function submit($event) {
-        return _vm.submitForm();
+        return _vm.submitForm(_vm.formData);
       }
     }
   }, [_c("div", {
@@ -1068,9 +1212,7 @@ var render = function render() {
         _vm.$set(_vm.formData, "name", $event.target.value);
       }
     }
-  }), _vm._v(" "), _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.errors.first("name")))])])])])], 1);
+  })])])])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -1210,6 +1352,21 @@ __webpack_require__.r(__webpack_exports__);
       // formData: {}
     };
   },
+  watch: {
+    'errors': {
+      handler: function handler(eachError, oldVal) {
+        var _this = this;
+        $(".validation_error").remove();
+        $(".is-invalid").removeClass('is-invalid');
+        $.each(eachError.items, function (index, eachField) {
+          var target = $("[name='" + eachField.field + "']");
+          $(target).parent().append("<span class='validation_error'>" + eachField.msg + "</span>");
+          $(target).addClass('is-invalid');
+        });
+      },
+      deep: true
+    }
+  },
   methods: {
     // formData =this.$store.getters.formData
     openModal: function openModal() {
@@ -1296,6 +1453,55 @@ __webpack_require__.r(__webpack_exports__);
         _this.$store.commit('dataList', response.data.result);
       });
     },
+    //
+    // submitForm: function (formData = {}, optParms = {}, callback) {
+    //     const _this = this;
+    //
+    //     _this.$validator.validateAll().then((valid) => {
+    //         if (valid) {
+    //             if (_this.formData.id) {
+    //                 axios.put(`${_this.urlGenerate()}/${_this.formData.id}`, _this.formData)
+    //                     .then(function (response) {
+    //                         _this.getDataList();
+    //                         _this.closeModal();
+    //                         _this.$toast.success("Data Update successfully!");
+    //                     })
+    //                     .catch(function (error) {
+    //                         console.error('Error updating category:', error);
+    //                         _this.$toast.error("Data Updating Unsuccessfully!");
+    //                     });
+    //             } else {
+    //                 axios.post(_this.urlGenerate(), formData)
+    //                     .then(function (res) {
+    //                         if (parseInt(res.data.status) === 2000) {
+    //                             if (optParms.modalForm === undefined) {
+    //                                 _this.closeModal();
+    //                             }
+    //                             if (optParms.reloadList === undefined) {
+    //                                 _this.getDataList();
+    //                             }
+    //                             if (typeof callback === "function") {
+    //                                 callback(res.data.result);
+    //                             }
+    //                             _this.$toast.success("Data Added successfully!");
+    //                         } else if (parseInt(res.data.status) === 3000) {
+    //                             $.each(res.data.result, function (index, errorValue) {
+    //                                 _this.$validator.errors.add({
+    //                                     id: index,
+    //                                     field: index,
+    //                                     name: index,
+    //                                     msg: errorValue[0],
+    //                                 });
+    //                             });
+    //                         } else {
+    //                             console.log('toster');
+    //                         }
+    //                     });
+    //             }
+    //         }
+    //     });
+    // },
+
     submitForm: function submitForm() {
       var _this2 = this;
       var formData = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -1434,6 +1640,15 @@ var getters = {
   },
   formData: function formData(state) {
     return state.formData;
+  },
+  requireData: function requireData(state) {
+    return state.requireData;
+  },
+  updateId: function updateId(state) {
+    return state.updateId;
+  },
+  formType: function formType(state) {
+    return state.formType;
   }
 };
 
@@ -1484,6 +1699,15 @@ var mutations = {
   },
   formData: function formData(state, data) {
     state.formData = data;
+  },
+  requireData: function requireData(state, data) {
+    state.requireData = data;
+  },
+  updateId: function updateId(state, data) {
+    state.updateId = data;
+  },
+  formType: function formType(state, data) {
+    state.formType = data;
   }
 };
 
@@ -1502,7 +1726,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var state = {
   dataList: {},
-  formData: {}
+  formData: {},
+  requireData: [],
+  updateId: '',
+  formType: 1
 };
 
 /***/ }),

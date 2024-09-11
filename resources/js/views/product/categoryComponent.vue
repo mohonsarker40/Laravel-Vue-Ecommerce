@@ -10,21 +10,24 @@
                     <td>
 <!--                        edit and delete button-->
 
-                        <button @click="openEditModal(data)" class="btn btn-outline-success"
-                        ><i class="fas fa-edit"></i></button>
-                        <button @click="deleteForm(data)" class="btn btn-outline-danger"><i
-                                class="fas fa-trash-alt"></i></button>
+                        <button @click="openEditModal(data)" class="btn btn-outline-success">
+                            <i class="fas fa-edit"></i>
+                        </button>
+
+                        <button @click="deleteForm(data)" class="btn btn-outline-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+
                     </td>
                 </tr>
             </data-table>
 
-            <form-modal ref="myModal" @submit="submitForm()">
+            <form-modal ref="myModal" @submit="submitForm(formData)">
                     <div class="row">
                         <div class="col-md-12">
                             <label>Category Name</label>
                             <input v-model="formData.name" v-validate="'required'" class="form-control"
                                    type="text" name="name"/>
-                            <span class="text-danger" >{{ errors.first('name') }}</span>
                         </div>
                     </div>
             </form-modal>
@@ -47,7 +50,7 @@
             }
         },
         mounted() {
-            this.getDataList(name);
+            this.getDataList();
             this.$set(this.formData, 'name', '');
         }
     }
