@@ -5,7 +5,7 @@
                 <div class="text-muted">Copyright © Your Website 2023</div>
                 <div>
                     <a href="#">Privacy Policy</a>
-                    ·
+
                     <a href="#">Terms &amp; Conditions</a>
                 </div>
             </div>
@@ -15,7 +15,7 @@
 
 <script>
     export default {
-        name: "footer"
+        name: "Footer"
     }
 </script>
 

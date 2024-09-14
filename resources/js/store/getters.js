@@ -5,8 +5,8 @@ export const getters = {
     formData(state){
         return state.formData;
     },
-    requireData(state){
-        return state.requireData;
+    requiredData(state){
+        return state.requiredData;
     },
     updateId(state){
         return state.updateId;

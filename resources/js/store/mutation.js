@@ -5,8 +5,8 @@ export const mutations = {
     formData(state, data){
         state.formData = data;
     },
-    requireData(state, data){
-        state.requireData = data;
+    requiredData(state, data){
+        state.requiredData = data;
     },
     updateId(state, data){
         state.updateId = data;

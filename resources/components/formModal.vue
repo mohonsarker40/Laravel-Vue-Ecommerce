@@ -1,8 +1,8 @@
 <template>
-    <!-- The Modal -->
+
     <div class="modal" :id="modalId">
         <div class="modal-dialog modal-xl ">
-            <form @submit.prevent="submitForm()" >
+            <form @submit.prevent="submit()" >
                 <div class="modal-content">
 
                     <!-- Modal Header -->

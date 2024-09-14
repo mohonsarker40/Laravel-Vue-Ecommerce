@@ -3,22 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\subCategory;
+use App\Supports\Helper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SubCategoryController extends Controller
 {
 
-    public function index()
+
+    use Helper;
+    public function  __construct()
     {
-        $data = SubCategory::get();
-        return response()-json(['result' => $data, 'status' => 2000]);
+        $this->model=new subCategory();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        $data=$this->model->get();
+        return $this->returnData(2000, $data);
+    }
+
+
     public function create()
     {
         //
@@ -27,51 +32,66 @@ class SubCategoryController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $validator = $this->model->validate($request->all());
+        if ($validator->fails()){
+            return response()->json(['result' => $validator->errors(), 'status' => 3000], 200);
+        }
+        $this->model->fill($request->all());
+        $this->model->save();
+        return $this->returnData(2000, $this->model);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\subCategory  $subCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(subCategory $subCategory)
+
+    public function show(Category $category)
     {
-        //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\subCategory  $subCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(subCategory $subCategory)
+
+    public function edit(Category $category)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\subCategory  $subCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, subCategory $subCategory)
+
+    public function update(Request $request)
     {
-        //
+
+        try {
+            $id = $request->input('id');
+
+            $category =$this->model->where('id', $id)->first();
+
+            if ($category) {
+                $category->name = $request->input('name');
+                $category->update();
+
+                return response()->json(['status' => 2000]);
+            }
+
+            return response()->json(['status' => 3000]);
+
+        } catch (\Exception $e) {
+            return response()->json(['result' => null, 'message' => $e->getMessage(), 'status' => 5000]);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\subCategory  $subCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(subCategory $subCategory)
+
+    public function destroy($category_id)
     {
-        //
+        try {
+            $category = $this->model->where('id', $category_id)->first();
+
+            if ($category) {
+
+                $category->delete();
+                return response()->json(['status' => 2000]);
+            }
+
+            return response()->json(['status' => 3000]);
+        } catch (\Exception $e) {
+            return response()->json(['result' => null, 'message' => $e->getMessage(), 'status' => 5000]);
+        }
     }
+
 }

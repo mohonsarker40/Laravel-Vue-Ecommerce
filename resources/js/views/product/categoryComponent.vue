@@ -14,7 +14,7 @@
                             <i class="fas fa-edit"></i>
                         </button>
 
-                        <button @click="deleteForm(data)" class="btn btn-outline-danger">
+                        <button @click=" deleteInformation(data.id, index)" class="btn btn-outline-danger">
                             <i class="fas fa-trash-alt"></i>
                         </button>
 
@@ -26,7 +26,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label>Category Name</label>
-                            <input v-model="formData.name" v-validate="'required'" class="form-control"
+                            <input v-model="formData.name"
+                                   v-validate="'required'" class="form-control"
                                    type="text" name="name"/>
                         </div>
                     </div>

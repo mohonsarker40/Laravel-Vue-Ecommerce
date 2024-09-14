@@ -1,7 +1,7 @@
 export const state = {
+    requiredData: [],
     dataList: {},
     formData: {},
-    requireData: [],
     updateId: '',
     formType: 1,
 

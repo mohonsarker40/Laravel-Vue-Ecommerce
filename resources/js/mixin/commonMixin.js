@@ -1,11 +1,8 @@
 import axios from 'axios'
-
-
 export default {
     data() {
         return {
-            // dataList: {},
-            // formData: {}
+
         }
     },
     watch: {
@@ -25,17 +22,24 @@ export default {
     },
 
     methods: {
-        // formData =this.$store.getters.formData
-        openModal : function (modalId = 'myModal', formData = {}){
+        openModal : function (modalId = false, formData = {}, callback= false){
             const _this = this;
-            $(`#${modalId}`).modal('show');
+            let modal= modalId ? modalId : 'myModal';
+            $(`#${modal}`).modal('show');
             _this.$store.commit('formData', formData);
+
+
+            if (typeof callback == 'function'){
+                callback(true);
+            }
         },
 
         closeModal : function (modalId = 'myModal', formData = {}){
             const _this = this;
             $(`#${modalId}`).modal('hide');
             _this.$store.commit('formData', {});
+            _this.$store.commit('updateId', '');
+            _this.$store.commit('formType', 1);
 
         },
 
@@ -46,21 +50,15 @@ export default {
             }
             return `${baseUrl}/${_this.$route.meta.dataUrl}`;
         },
-        // openEditModal(category) {
-        //     this.$store.commit('formData', category);
-        //     if (this.$refs.myModal) {
-        //         this.$refs.myModal.show();
-        //     } else {
-        //         console.error("Modal not found");
-        //     }
-        // },
-        openEditModal(category) {
-            let cat=Object.assign({},category)
-            this.$store.commit('formData', cat);
 
-            this.openModal('myModal',this.$store.getters.formData);
-
+        openEditModal : function (data, id){
+            const _this = this;
+            _this.$store.commit('updateId', id);
+            _this.$store.commit('formType', 2);
+            _this.openModal(false, data);
         },
+
+
     },
 
     computed : {
@@ -69,7 +67,17 @@ export default {
         },
         dataList(){
             return this.$store.state.dataList;
-        }
+        },
+        updateId(){
+            return this.$store.state.updateId;
+        },
+        formType(){
+            return this.$store.state.formType;
+        },
+        requiredData(){
+            return this.$store.state.requiredData;
+        },
+
     }
 
 }

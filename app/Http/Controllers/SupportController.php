@@ -21,9 +21,7 @@ class SupportController extends Controller
         if(in_array('sub_category', $array)){
             $data['sub_category'] = subCategory::get();
         }
-        if(in_array('user', $array)){
-            $data['user'] = User::get();
-        }
+
         return $this->returnData(2000, $data);
     }
 }

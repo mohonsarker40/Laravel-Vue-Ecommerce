@@ -9,8 +9,8 @@
                 <main>
                     <router-view></router-view>
                 </main>
-
                 <Footer></Footer>
+
             </div>
         </div>
 
@@ -21,7 +21,7 @@
 <script>
     import TopNav from "../components/topNav";
     import SideNav from "../components/sideNav";
-    import Footer from "../components/footer";
+    import Footer from "../components/Footer";
     export default {
         name: "App",
         components: {Footer, SideNav, TopNav}

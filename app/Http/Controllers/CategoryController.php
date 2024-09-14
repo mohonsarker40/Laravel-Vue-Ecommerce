@@ -77,10 +77,10 @@ class CategoryController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($category_id)
     {
         try {
-            $category = $this->model->where('id', $id)->first();
+            $category = $this->model->where('id', $category_id)->first();
 
             if ($category) {
 
