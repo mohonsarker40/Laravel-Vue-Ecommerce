@@ -7,7 +7,8 @@
             <tr v-for="(data, index) in dataList" :key="index">
                 <td> {{ index+1 }} </td>
                 <td> {{ data.name }} </td>
-                <td> {{ data.category_id.name }} </td>
+<!--                <td> {{ data.category_id.name }} </td>-->
+                <td> {{ data.category ? data.category.name : 'N/A' }} </td>
                 <td>
                     <!--                        edit and delete button-->
 

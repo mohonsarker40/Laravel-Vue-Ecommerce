@@ -1242,7 +1242,7 @@ var render = function render() {
   }, _vm._l(_vm.dataList, function (data, index) {
     return _c("tr", {
       key: index
-    }, [_c("td", [_vm._v(" " + _vm._s(index + 1) + " ")]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(data.name) + " ")]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(data.category_id.name) + " ")]), _vm._v(" "), _c("td", [_c("button", {
+    }, [_c("td", [_vm._v(" " + _vm._s(index + 1) + " ")]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(data.name) + " ")]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(data.category ? data.category.name : "N/A") + " ")]), _vm._v(" "), _c("td", [_c("button", {
       staticClass: "btn btn-outline-success",
       on: {
         click: function click($event) {

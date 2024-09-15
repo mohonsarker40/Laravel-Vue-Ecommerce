@@ -12,11 +12,16 @@ class subCategory extends Model
 
     protected $fillable = ['name', 'category_id'];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function validate($input)
     {
         return Validator::make($input, [
             'category_id' => 'required',
-            'name' => 'required'
+            'name' => 'required|string'
         ]);
     }
 }
