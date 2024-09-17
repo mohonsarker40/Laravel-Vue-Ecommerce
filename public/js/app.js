@@ -106,7 +106,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "sideNav"
+  name: "sideNav",
+  methods: {
+    getConfigurations: function getConfigurations() {
+      var _this = this;
+      var url = _this.urlGenerate('api/configurations');
+      _this.httpReq('get', url, {}, {}, function (retData) {
+        _this.$store.commit('Config', retData.result);
+        _this.$store.commit('permissions', retData.result.permissions);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getConfigurations();
+  }
 });
 
 /***/ }),
@@ -569,63 +582,45 @@ var render = function render() {
     staticClass: "nav"
   }, [_c("div", {
     staticClass: "sb-sidenav-menu-heading"
-  }, [_vm._v("Core")]), _vm._v(" "), _c("router-link", {
-    staticClass: "nav-link",
-    attrs: {
-      to: "/admin/dashboard"
-    }
-  }, [_c("div", {
-    staticClass: "sb-nav-link-icon"
-  }, [_c("svg", {
-    staticClass: "svg-inline--fa fa-gauge-high",
-    attrs: {
-      "aria-hidden": "true",
-      focusable: "false",
-      "data-prefix": "fas",
-      "data-icon": "gauge-high",
-      role: "img",
-      xmlns: "http://www.w3.org/2000/svg",
-      viewBox: "0 0 512 512",
-      "data-fa-i2svg": ""
-    }
-  }, [_c("path", {
-    attrs: {
-      fill: "currentColor",
-      d: "M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM256 416c35.3 0 64-28.7 64-64c0-17.4-6.9-33.1-18.1-44.6L366 161.7c5.3-12.1-.2-26.3-12.3-31.6s-26.3 .2-31.6 12.3L257.9 288c-.6 0-1.3 0-1.9 0c-35.3 0-64 28.7-64 64s28.7 64 64 64zM176 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM96 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm352-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
-    }
-  })])]), _vm._v("\n                        Dashboard\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Core")]), _vm._v(" "), _c("div", {
     staticClass: "sb-sidenav-menu-heading"
-  }, [_vm._v("Ecommerce")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "collapse",
-    attrs: {
-      id: "collapseLayouts",
-      "aria-labelledby": "headingOne",
-      "data-bs-parent": "#sidenavAccordion"
-    }
-  }, [_c("nav", {
-    staticClass: "sb-sidenav-menu-nested nav"
-  }, [_c("router-link", {
-    staticClass: "nav-link",
-    attrs: {
-      to: "/admin/product/category"
-    }
-  }, [_c("i", {
-    staticClass: "fas fa-arrow-right px-2"
-  }), _vm._v("\n                                Category\n                            ")]), _vm._v(" "), _c("router-link", {
-    staticClass: "nav-link",
-    attrs: {
-      to: "/admin/product/sub_category"
-    }
-  }, [_c("i", {
-    staticClass: "fas fa-arrow-right px-2"
-  }), _vm._v("\n                                SubCategory\n                            ")]), _vm._v(" "), _c("router-link", {
-    staticClass: "nav-link",
-    attrs: {
-      to: "/admin/product/product"
-    }
-  }, [_c("i", {
-    staticClass: "fas fa-arrow-right px-2"
-  }), _vm._v("\n                                Products\n                            ")])], 1)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
+  }, [_vm._v("Ecommerce")]), _vm._v(" "), _vm._l(_vm.Config.menus, function (menu, mIndex) {
+    return [menu.sub_menus.length > 0 ? [_c("a", {
+      staticClass: "nav-link collapsed",
+      attrs: {
+        href: "#",
+        "data-bs-toggle": "collapse",
+        "data-bs-target": "#collapseLayouts",
+        "aria-expanded": "false",
+        "aria-controls": "collapseLayouts"
+      }
+    }, [_vm._m(0, true), _vm._v(" "), _c("span", [_vm._v(_vm._s(menu.name))]), _vm._v(" "), _vm._m(1, true)]), _vm._v(" "), _c("div", {
+      staticClass: "collapse",
+      attrs: {
+        id: "collapseLayouts",
+        "aria-labelledby": "headingOne",
+        "data-bs-parent": "#sidenavAccordion"
+      }
+    }, [_c("nav", {
+      staticClass: "sb-sidenav-menu-nested nav"
+    }, [_vm._l(menu.sub_menus, function (subMenu, sIndex) {
+      return [_c("router-link", {
+        staticClass: "nav-link",
+        attrs: {
+          to: subMenu.link
+        }
+      }, [_vm._v(_vm._s(subMenu.name))])];
+    })], 2)])] : [_c("router-link", {
+      staticClass: "nav-link",
+      attrs: {
+        to: menu.link
+      }
+    }, [_c("div", {
+      staticClass: "sb-nav-link-icon"
+    }, [_c("i", {
+      staticClass: "fas fa-tachometer-alt"
+    })]), _vm._v("\n                                " + _vm._s(menu.name) + "\n                            ")])]];
+  }), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "collapse",
     attrs: {
       id: "collapseLayouts2",
@@ -694,29 +689,24 @@ var render = function render() {
       fill: "currentColor",
       d: "M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"
     }
-  })])]), _vm._v("\n                        Tables\n                    ")])], 1)]), _vm._v(" "), _vm._m(2)])]);
+  })])]), _vm._v("\n                        Tables\n                    ")])], 2)]), _vm._v(" "), _vm._m(3)])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("a", {
-    staticClass: "nav-link collapsed",
-    attrs: {
-      href: "#",
-      "data-bs-toggle": "collapse",
-      "data-bs-target": "#collapseLayouts",
-      "aria-expanded": "false",
-      "aria-controls": "collapseLayouts"
-    }
-  }, [_c("div", {
+  return _c("div", {
     staticClass: "sb-nav-link-icon"
   }, [_c("i", {
-    staticClass: "fab fa-product-hunt"
-  })]), _vm._v(" "), _c("span", [_vm._v("Product")]), _vm._v(" "), _c("div", {
+    staticClass: "fas fa-columns"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "sb-sidenav-collapse-arrow"
   }, [_c("i", {
-    staticClass: "bi bi-arrow-down"
-  }, [_vm._v(" ↓ ")])])]);
+    staticClass: "fas fa-angle-down"
+  })]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

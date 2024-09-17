@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\modules;
 use App\Models\subCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Supports\Helper;
+use Illuminate\Support\Facades\DB;
 
 class SupportController extends Controller
 {
@@ -32,7 +34,7 @@ class SupportController extends Controller
     {
         {
             $permittedModuleId = DB::table('role_modules')->where('role_id', auth()->user()->role_id)->get()->pluck('module_id')->toArray();
-            $data['menus'] = Module::where('parent_id', 0)
+            $data['menus'] = modules::where('parent_id', 0)
                 ->whereIN('id', $permittedModuleId)
                 ->with(['sub_menus' => function ($query) use ($permittedModuleId) {
                     $query->whereIN('id', $permittedModuleId);
