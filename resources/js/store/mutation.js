@@ -13,6 +13,13 @@ export const mutations = {
     },
     formType(state, data){
         state.formType = data;
+    },
+    Config(state, data){
+        state.Config = data;
+    },
+    permissions(state, data){
+        state.permissions = data;
     }
+
 
 }

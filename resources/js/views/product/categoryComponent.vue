@@ -10,7 +10,8 @@
                     <td>
 <!--                        edit and delete button-->
 
-                        <button @click="openEditModal(data)" class="btn btn-outline-success">
+                        <button @click="openEditModal(data,data.id)"
+                                class="btn btn-outline-success">
                             <i class="fas fa-edit"></i>
                         </button>
 

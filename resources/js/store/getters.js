@@ -13,6 +13,12 @@ export const getters = {
     },
     formType(state){
         return state.formType;
+    },
+    Config(state){
+        return state.Config;
+    },
+    permissions(state){
+        return state.permissions;
     }
 
 }

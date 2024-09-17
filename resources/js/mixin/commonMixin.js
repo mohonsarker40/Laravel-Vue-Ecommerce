@@ -77,6 +77,12 @@ export default {
         requiredData(){
             return this.$store.state.requiredData;
         },
+        Config(){
+            return this.$store.state.Config;
+        },
+        permissions(){
+            return this.$store.state.permissions;
+        }
 
     }
 

@@ -12,14 +12,15 @@ class CategoryController extends Controller
 
 
     use Helper;
-    public function  __construct()
+
+    public function __construct()
     {
-        $this->model=new Category();
+        $this->model = new Category();
     }
 
     public function index()
     {
-        $data=$this->model->get();
+        $data = $this->model->get();
         return $this->returnData(2000, $data);
     }
 
@@ -33,7 +34,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validator = $this->model->validate($request->all());
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return response()->json(['result' => $validator->errors(), 'status' => 3000], 200);
         }
         $this->model->fill($request->all());
@@ -56,11 +57,15 @@ class CategoryController extends Controller
 
     public function update(Request $request)
     {
+//        if (!$this->can('category_edit')) {
+//            return $this->returnData(5000, null, 'You do not have permission to edit this category');
+//        }
+
 
         try {
             $id = $request->input('id');
 
-            $category =$this->model->where('id', $id)->first();
+            $category = $this->model->where('id', $id)->first();
 
             if ($category) {
                 $category->name = $request->input('name');

@@ -65,13 +65,13 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     submit: function submit() {
       this.$emit('submit');
-    },
-    show: function show() {
-      $("#".concat(this.modalId)).modal('show');
-    },
-    closeModal: function closeModal() {
-      $("#".concat(this.modalId)).modal('hide');
     }
+    // show() {
+    //     $(`#${this.modalId}`).modal('show');
+    // },
+    // closeModal() {
+    //     $(`#${this.modalId}`).modal('hide');
+    // },
   }
 });
 
@@ -625,7 +625,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fas fa-arrow-right px-2"
-  }), _vm._v("\n                                Product\n                            ")])], 1)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
+  }), _vm._v("\n                                Products\n                            ")])], 1)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "collapse",
     attrs: {
       id: "collapseLayouts2",
@@ -1158,7 +1158,7 @@ var render = function render() {
       staticClass: "btn btn-outline-success",
       on: {
         click: function click($event) {
-          return _vm.openEditModal(data);
+          return _vm.openEditModal(data, data.id);
         }
       }
     }, [_c("i", {
@@ -1521,6 +1521,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     requiredData: function requiredData() {
       return this.$store.state.requiredData;
+    },
+    Config: function Config() {
+      return this.$store.state.Config;
+    },
+    permissions: function permissions() {
+      return this.$store.state.permissions;
     }
   }
 });
@@ -1728,6 +1734,12 @@ var getters = {
   },
   formType: function formType(state) {
     return state.formType;
+  },
+  Config: function Config(state) {
+    return state.Config;
+  },
+  permissions: function permissions(state) {
+    return state.permissions;
   }
 };
 
@@ -1787,6 +1799,12 @@ var mutations = {
   },
   formType: function formType(state, data) {
     state.formType = data;
+  },
+  Config: function Config(state, data) {
+    state.Config = data;
+  },
+  permissions: function permissions(state, data) {
+    state.permissions = data;
   }
 };
 
@@ -1808,7 +1826,9 @@ var state = {
   dataList: {},
   formData: {},
   updateId: '',
-  formType: 1
+  formType: 1,
+  Config: {},
+  permissions: []
 };
 
 /***/ }),

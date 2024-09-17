@@ -11,6 +11,7 @@
                     </router-link>
 
                     <div class="sb-sidenav-menu-heading">Ecommerce</div>
+
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon">
                             <i class="fab fa-product-hunt"></i>
@@ -34,7 +35,7 @@
 
                             <router-link class="nav-link" to="/admin/product/product">
                                 <i class="fas fa-arrow-right px-2"></i>
-                                Product
+                                Products
                             </router-link>
                         </nav>
                     </div>
