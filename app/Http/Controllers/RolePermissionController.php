@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\role_permisson;
 use Illuminate\Http\Request;
 
-class RolePermissonController extends Controller
+class RolePermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class RolePermissonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\role_permisson  $role_permisson
+     * @param  \App\Models\role_permission  $role_permission
      * @return \Illuminate\Http\Response
      */
-    public function show(role_permisson $role_permisson)
+    public function show(role_permission $role_permission)
     {
         //
     }
@@ -52,10 +51,10 @@ class RolePermissonController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\role_permisson  $role_permisson
+     * @param  \App\Models\role_permission  $role_permission
      * @return \Illuminate\Http\Response
      */
-    public function edit(role_permisson $role_permisson)
+    public function edit(role_permission $role_permission)
     {
         //
     }
@@ -64,10 +63,10 @@ class RolePermissonController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\role_permisson  $role_permisson
+     * @param  \App\Models\role_permission  $role_permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, role_permisson $role_permisson)
+    public function update(Request $request, role_permission $role_permission)
     {
         //
     }
@@ -75,10 +74,10 @@ class RolePermissonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\role_permisson  $role_permisson
+     * @param  \App\Models\role_permission  $role_permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(role_permisson $role_permisson)
+    public function destroy(role_permission $role_permission)
     {
         //
     }

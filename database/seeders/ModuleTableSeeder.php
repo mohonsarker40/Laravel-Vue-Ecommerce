@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\modules;
 use App\Models\permission;
 use App\Models\role_modules;
-use App\Models\role_permisson;
+use App\Models\role_permission;
 use App\Models\roles;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -20,7 +20,7 @@ class ModuleTableSeeder extends Seeder
         modules::truncate();
         permission::truncate();
         role_modules::truncate();
-        role_permisson::truncate();
+        role_permission::truncate();
 
         $modules = [
             [
@@ -52,15 +52,6 @@ class ModuleTableSeeder extends Seeder
         ];
 
 
-//        $role = new roles();
-//        $role->name = 'Admin';
-//        $role->save();
-//
-//
-//        User::where('id', 1)->update([
-//            'role_id' => 1,
-//        ]);
-
         $role = new roles();
         $role->name = 'Admin';
         $role->save();
@@ -86,7 +77,7 @@ class ModuleTableSeeder extends Seeder
                 $permissionModel->name = $eachModule['key'] . "_" . $permission;
                 $permissionModel->save();
 
-                $rolePermission = new role_permisson();
+                $rolePermission = new role_permission();
                 $rolePermission->role_id = $role->id;
                 $rolePermission->permission_id = $permissionModel->id;
                 $rolePermission->save();
@@ -110,7 +101,7 @@ class ModuleTableSeeder extends Seeder
                     $subPermissionModel->name = $submenu['key'] . "_" . $permission;
                     $subPermissionModel->save();
 
-                    $rolePermission = new role_permisson();
+                    $rolePermission = new role_permission();
                     $rolePermission->role_id = $role->id;
                     $rolePermission->permission_id = $subPermissionModel->id;
                     $rolePermission->save();

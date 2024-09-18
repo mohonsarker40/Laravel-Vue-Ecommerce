@@ -39,7 +39,7 @@ trait Helper
     public function authPermissions()
     {
         return DB::table('permissions')
-            ->join('role_permissons', 'permissions.id', '=', 'role_permissons.permission_id')
+            ->join('role_permissions', 'permissions.id', '=', 'role_permissions.permission_id')
             ->where('role_id', auth()->user()->role_id)
             ->get()->pluck('name')->toArray();
     }

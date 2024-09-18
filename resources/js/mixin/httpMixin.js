@@ -90,7 +90,7 @@ export default {
                             // _this.errors = res.data.result;
                             // console.log(_this.errors);
                         }else{
-                            console.log('toster');
+                            console.log('toaster');
                         }
                     });
                 }

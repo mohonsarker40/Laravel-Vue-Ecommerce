@@ -582,7 +582,31 @@ var render = function render() {
     staticClass: "nav"
   }, [_c("div", {
     staticClass: "sb-sidenav-menu-heading"
-  }, [_vm._v("Core")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Core")]), _vm._v(" "), _c("router-link", {
+    staticClass: "nav-link",
+    attrs: {
+      to: "/admin/dashboard"
+    }
+  }, [_c("div", {
+    staticClass: "sb-nav-link-icon"
+  }, [_c("svg", {
+    staticClass: "svg-inline--fa fa-gauge-high",
+    attrs: {
+      "aria-hidden": "true",
+      focusable: "false",
+      "data-prefix": "fas",
+      "data-icon": "gauge-high",
+      role: "img",
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 512 512",
+      "data-fa-i2svg": ""
+    }
+  }, [_c("path", {
+    attrs: {
+      fill: "currentColor",
+      d: "M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM256 416c35.3 0 64-28.7 64-64c0-17.4-6.9-33.1-18.1-44.6L366 161.7c5.3-12.1-.2-26.3-12.3-31.6s-26.3 .2-31.6 12.3L257.9 288c-.6 0-1.3 0-1.9 0c-35.3 0-64 28.7-64 64s28.7 64 64 64zM176 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM96 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm352-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
+    }
+  })])]), _vm._v("\n                        Dashboard\n                    ")]), _vm._v(" "), _c("div", {
     staticClass: "sb-sidenav-menu-heading"
   }, [_vm._v("Ecommerce")]), _vm._v(" "), _vm._l(_vm.Config.menus, function (menu, mIndex) {
     return [menu.sub_menus.length > 0 ? [_c("a", {
@@ -639,57 +663,7 @@ var render = function render() {
     attrs: {
       to: "/admin/customer/order"
     }
-  }, [_vm._v("Order")])], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "sb-sidenav-menu-heading"
-  }, [_vm._v("Addons")]), _vm._v(" "), _c("a", {
-    staticClass: "nav-link",
-    attrs: {
-      href: "charts.html"
-    }
-  }, [_c("div", {
-    staticClass: "sb-nav-link-icon"
-  }, [_c("svg", {
-    staticClass: "svg-inline--fa fa-chart-area",
-    attrs: {
-      "aria-hidden": "true",
-      focusable: "false",
-      "data-prefix": "fas",
-      "data-icon": "chart-area",
-      role: "img",
-      xmlns: "http://www.w3.org/2000/svg",
-      viewBox: "0 0 512 512",
-      "data-fa-i2svg": ""
-    }
-  }, [_c("path", {
-    attrs: {
-      fill: "currentColor",
-      d: "M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z"
-    }
-  })])]), _vm._v("\n                        Charts\n                    ")]), _vm._v(" "), _c("a", {
-    staticClass: "nav-link",
-    attrs: {
-      href: "tables.html"
-    }
-  }, [_c("div", {
-    staticClass: "sb-nav-link-icon"
-  }, [_c("svg", {
-    staticClass: "svg-inline--fa fa-table",
-    attrs: {
-      "aria-hidden": "true",
-      focusable: "false",
-      "data-prefix": "fas",
-      "data-icon": "table",
-      role: "img",
-      xmlns: "http://www.w3.org/2000/svg",
-      viewBox: "0 0 512 512",
-      "data-fa-i2svg": ""
-    }
-  }, [_c("path", {
-    attrs: {
-      fill: "currentColor",
-      d: "M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"
-    }
-  })])]), _vm._v("\n                        Tables\n                    ")])], 2)]), _vm._v(" "), _vm._m(3)])]);
+  }, [_vm._v("Order")])], 1)])], 2)]), _vm._v(" "), _vm._m(3)])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -725,9 +699,11 @@ var staticRenderFns = [function () {
     staticClass: "fas fa-user"
   })]), _vm._v(" "), _c("span", [_vm._v("Customer")]), _vm._v(" "), _c("div", {
     staticClass: "sb-sidenav-collapse-arrow"
+  }, [_c("div", {
+    staticClass: "sb-sidenav-collapse-arrow"
   }, [_c("i", {
-    staticClass: "bi bi-arrow-down"
-  }, [_vm._v(" ↓ ")])])]);
+    staticClass: "fas fa-angle-left"
+  })])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -735,7 +711,7 @@ var staticRenderFns = [function () {
     staticClass: "sb-sidenav-footer"
   }, [_c("div", {
     staticClass: "small"
-  }, [_vm._v("Logged in as:")]), _vm._v("\n                Start Bootstrap\n            ")]);
+  }, [_vm._v("Logged in as:")]), _vm._v("\n                Rangpur Shop\n            ")]);
 }];
 render._withStripped = true;
 
@@ -1624,7 +1600,7 @@ __webpack_require__.r(__webpack_exports__);
               // _this.errors = res.data.result;
               // console.log(_this.errors);
             } else {
-              console.log('toster');
+              console.log('toaster');
             }
           });
         }
