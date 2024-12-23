@@ -1,27 +1,20 @@
 <template>
 
     <div class="modal" :id="modalId">
-        <div class="modal-dialog modal-xl ">
+        <div class="modal-dialog modal-xs ">
             <form @submit.prevent="submit()" >
                 <div class="modal-content">
-
-                    <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Modal Heading</h4>
                         <button type="button" class="btn-close"  @click="closeModal(modalId)"></button>
                     </div>
-
-                    <!-- Modal body -->
                     <div class="modal-body">
                         <slot></slot>
                     </div>
-
-                    <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success" >Submit</button>
                         <button type="button" class="btn btn-danger" @click="closeModal(modalId)">Close</button>
                     </div>
-
                 </div>
             </form>
         </div>

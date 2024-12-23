@@ -230,7 +230,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "dashboardComponent.vue",
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    // const _this = this;
+    // this.getDataList(1, (retData) => {});
+  }
 });
 
 /***/ }),
@@ -463,7 +466,7 @@ var render = function render() {
       id: _vm.modalId
     }
   }, [_c("div", {
-    staticClass: "modal-dialog modal-xl"
+    staticClass: "modal-dialog modal-xs"
   }, [_c("form", {
     on: {
       submit: function submit($event) {
@@ -606,7 +609,7 @@ var render = function render() {
       fill: "currentColor",
       d: "M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM256 416c35.3 0 64-28.7 64-64c0-17.4-6.9-33.1-18.1-44.6L366 161.7c5.3-12.1-.2-26.3-12.3-31.6s-26.3 .2-31.6 12.3L257.9 288c-.6 0-1.3 0-1.9 0c-35.3 0-64 28.7-64 64s28.7 64 64 64zM176 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM96 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm352-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
     }
-  })])]), _vm._v("\n                        Dashboard\n                    ")]), _vm._v(" "), _c("div", {
+  })])]), _vm._v("\n                    Dashboard\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "sb-sidenav-menu-heading"
   }, [_vm._v("Ecommerce")]), _vm._v(" "), _vm._l(_vm.Config.menus, function (menu, mIndex) {
     return [menu.sub_menus.length > 0 ? [_c("a", {
@@ -643,7 +646,7 @@ var render = function render() {
       staticClass: "sb-nav-link-icon"
     }, [_c("i", {
       staticClass: "fas fa-tachometer-alt"
-    })]), _vm._v("\n                                " + _vm._s(menu.name) + "\n                            ")])]];
+    })]), _vm._v("\n                            " + _vm._s(menu.name) + "\n                        ")])]];
   }), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "collapse",
     attrs: {
@@ -711,7 +714,7 @@ var staticRenderFns = [function () {
     staticClass: "sb-sidenav-footer"
   }, [_c("div", {
     staticClass: "small"
-  }, [_vm._v("Logged in as:")]), _vm._v("\n                Rangpur Shop\n            ")]);
+  }, [_vm._v("Logged in as:")]), _vm._v("\n            Rangpur Shop\n        ")]);
 }];
 render._withStripped = true;
 
@@ -740,7 +743,7 @@ var render = function render() {
     attrs: {
       to: "/admin/dashboard"
     }
-  }, [_vm._v("Start Bootstrap")]), _vm._v(" "), _c("button", {
+  }, [_vm._v("Ecommerce")]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0",
     attrs: {
       id: "sidebarToggle",
@@ -946,150 +949,42 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("main", [_c("div", {
-    staticClass: "container-fluid px-4"
-  }, [_c("h1", {
-    staticClass: "mt-4"
-  }, [_vm._v("Dashboard")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-xl-3 col-md-6"
-  }, [_c("div", {
-    staticClass: "card bg-primary text-white mb-4"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_vm._v("Blue")]), _vm._v(" "), _c("div", {
-    staticClass: "card-footer d-flex align-items-center justify-content-between"
-  }, [_c("a", {
-    staticClass: "small text-white stretched-link",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("View Details")]), _vm._v(" "), _c("div", {
-    staticClass: "small text-white"
-  }, [_c("svg", {
-    staticClass: "svg-inline--fa fa-angle-right",
-    attrs: {
-      "aria-hidden": "true",
-      focusable: "false",
-      "data-prefix": "fas",
-      "data-icon": "angle-right",
-      role: "img",
-      xmlns: "http://www.w3.org/2000/svg",
-      viewBox: "0 0 256 512",
-      "data-fa-i2svg": ""
-    }
-  }, [_c("path", {
-    attrs: {
-      fill: "currentColor",
-      d: "M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
-    }
-  })])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-xl-3 col-md-6"
-  }, [_c("div", {
-    staticClass: "card bg-warning text-white mb-4"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_vm._v("Yellow")]), _vm._v(" "), _c("div", {
-    staticClass: "card-footer d-flex align-items-center justify-content-between"
-  }, [_c("a", {
-    staticClass: "small text-white stretched-link",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("View Details")]), _vm._v(" "), _c("div", {
-    staticClass: "small text-white"
-  }, [_c("svg", {
-    staticClass: "svg-inline--fa fa-angle-right",
-    attrs: {
-      "aria-hidden": "true",
-      focusable: "false",
-      "data-prefix": "fas",
-      "data-icon": "angle-right",
-      role: "img",
-      xmlns: "http://www.w3.org/2000/svg",
-      viewBox: "0 0 256 512",
-      "data-fa-i2svg": ""
-    }
-  }, [_c("path", {
-    attrs: {
-      fill: "currentColor",
-      d: "M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
-    }
-  })])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-xl-3 col-md-6"
-  }, [_c("div", {
-    staticClass: "card bg-success text-white mb-4"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_vm._v("Green")]), _vm._v(" "), _c("div", {
-    staticClass: "card-footer d-flex align-items-center justify-content-between"
-  }, [_c("a", {
-    staticClass: "small text-white stretched-link",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("View Details")]), _vm._v(" "), _c("div", {
-    staticClass: "small text-white"
-  }, [_c("svg", {
-    staticClass: "svg-inline--fa fa-angle-right",
-    attrs: {
-      "aria-hidden": "true",
-      focusable: "false",
-      "data-prefix": "fas",
-      "data-icon": "angle-right",
-      role: "img",
-      xmlns: "http://www.w3.org/2000/svg",
-      viewBox: "0 0 256 512",
-      "data-fa-i2svg": ""
-    }
-  }, [_c("path", {
-    attrs: {
-      fill: "currentColor",
-      d: "M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
-    }
-  })])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-xl-3 col-md-6"
-  }, [_c("div", {
-    staticClass: "card bg-danger text-white mb-4"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_vm._v("Red")]), _vm._v(" "), _c("div", {
-    staticClass: "card-footer d-flex align-items-center justify-content-between"
-  }, [_c("a", {
-    staticClass: "small text-white stretched-link",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("View Details")]), _vm._v(" "), _c("div", {
-    staticClass: "small text-white"
-  }, [_c("svg", {
-    staticClass: "svg-inline--fa fa-angle-right",
-    attrs: {
-      "aria-hidden": "true",
-      focusable: "false",
-      "data-prefix": "fas",
-      "data-icon": "angle-right",
-      role: "img",
-      xmlns: "http://www.w3.org/2000/svg",
-      viewBox: "0 0 256 512",
-      "data-fa-i2svg": ""
-    }
-  }, [_c("path", {
-    attrs: {
-      fill: "currentColor",
-      d: "M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
-    }
-  })])])])])])])])])]);
+  return _vm._m(0);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("ol", {
+  return _c("div", [_c("main", [_c("div", {
+    staticClass: "container-fluid px-4"
+  }, [_c("h1", {
+    staticClass: "mt-4"
+  }, [_vm._v("Dashboard")]), _vm._v(" "), _c("ol", {
     staticClass: "breadcrumb mb-4"
   }, [_c("li", {
     staticClass: "breadcrumb-item active"
-  }, [_vm._v("Dashboard")])]);
+  }, [_vm._v("Thanks for coming back!")])]), _vm._v(" "), _c("div", {
+    staticClass: "row g-4"
+  }, [_c("div", {
+    staticClass: "col-xl-3 col-md-6"
+  }, [_c("div", {
+    staticClass: "card bg-warning text-white shadow"
+  }, [_c("div", {
+    staticClass: "card-body d-flex justify-content-between align-items-center"
+  }, [_c("span", [_vm._v("Category")]), _vm._v(" "), _c("h4", {
+    staticClass: "mb-0"
+  }, [_vm._v("2")])]), _vm._v(" "), _c("div", {
+    staticClass: "card-footer text-white-50 small text-center"
+  }, [_vm._v("More details")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-xl-3 col-md-6"
+  }, [_c("div", {
+    staticClass: "card bg-danger text-white shadow"
+  }, [_c("div", {
+    staticClass: "card-body d-flex justify-content-between align-items-center"
+  }, [_c("span", [_vm._v("Subcategory")]), _vm._v(" "), _c("h4", {
+    staticClass: "mb-0"
+  }, [_vm._v("2")])]), _vm._v(" "), _c("div", {
+    staticClass: "card-footer text-white-50 small text-center"
+  }, [_vm._v("More details")])])])])])])]);
 }];
 render._withStripped = true;
 

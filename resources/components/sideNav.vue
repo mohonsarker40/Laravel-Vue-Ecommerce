@@ -14,34 +14,6 @@
 
                     <div class="sb-sidenav-menu-heading">Ecommerce</div>
 
-<!--                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">-->
-<!--                        <div class="sb-nav-link-icon">-->
-<!--                            <i class="fab fa-product-hunt"></i>-->
-<!--                        </div>-->
-<!--                        <span>Product</span>-->
-<!--                        <div class="sb-sidenav-collapse-arrow">-->
-<!--                            <i class="bi bi-arrow-down"> ↓ </i>-->
-<!--                        </div>-->
-<!--                    </a>-->
-<!--                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">-->
-<!--                        <nav class="sb-sidenav-menu-nested nav">-->
-<!--                            <router-link class="nav-link" to="/admin/product/category">-->
-<!--                                <i class="fas fa-arrow-right px-2"></i>-->
-<!--                                Category-->
-<!--                            </router-link>-->
-
-<!--                            <router-link class="nav-link" to="/admin/product/sub_category">-->
-<!--                                <i class="fas fa-arrow-right px-2"></i>-->
-<!--                                SubCategory-->
-<!--                            </router-link>-->
-
-<!--                            <router-link class="nav-link" to="/admin/product/product">-->
-<!--                                <i class="fas fa-arrow-right px-2"></i>-->
-<!--                                Products-->
-<!--                            </router-link>-->
-<!--                        </nav>-->
-<!--                    </div>-->
-
                 <!--product-->
                     <template v-for="(menu, mIndex) in Config.menus">
                         <template v-if="menu.sub_menus.length > 0">
@@ -96,15 +68,7 @@
     </div>
 </template>
 
-<!--<script>-->
-<!--    export default {-->
-<!--        name: "sideNav"-->
-<!--    }-->
-<!--</script>-->
 
-<!--<style scoped>-->
-
-<!--</style>-->
 
 <script>
     export default {

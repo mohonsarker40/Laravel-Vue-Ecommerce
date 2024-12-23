@@ -8,12 +8,10 @@ use App\Models\role_modules;
 use App\Models\role_permission;
 use App\Models\roles;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ModuleTableSeeder extends Seeder
 {
-
     public function run()
     {
         roles::truncate();
