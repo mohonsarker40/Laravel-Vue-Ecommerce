@@ -17,4 +17,5 @@ Route::prefix('api')->middleware('auth')->group(function (){
 
     Route::resource('categories', \App\Http\Controllers\CategoryController::class);
     Route::resource('sub_categories', \App\Http\Controllers\SubCategoryController::class);
+    Route::resource('product', \App\Http\Controllers\ProductController::class);
 });

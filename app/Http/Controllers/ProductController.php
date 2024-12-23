@@ -2,23 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\subCategory;
+use App\Models\Product;
 use App\Supports\Helper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-class SubCategoryController extends Controller
-{
-    use Helper;
+class ProductController extends Controller
+{use Helper;
     public function  __construct()
     {
-        $this->model=new subCategory();
+        $this->model=new Product();
     }
 
     public function index()
     {
-//        $data=$this->model->get();
-        $data = $this->model->with('category')->get();
+        $data = $this->model->with('sub_category', 'category')->get();
         return $this->returnData(2000, $data);
     }
 
@@ -41,19 +38,19 @@ class SubCategoryController extends Controller
     }
 
 
-    public function show(Category $category)
+    public function show( )
     {
 
     }
 
 
-    public function edit(Category $category)
+    public function edit()
     {
 
     }
 
 
-    public function update(Request $request)
+    public function update()
     {
 
         try {
@@ -76,10 +73,10 @@ class SubCategoryController extends Controller
     }
 
 
-    public function destroy($category_id)
+    public function destroy($product_id)
     {
         try {
-            $data = $this->model->where('id', $category_id)->first();
+            $data = $this->model->where('id', $product_id)->first();
 
             if ($data) {
 
@@ -92,5 +89,4 @@ class SubCategoryController extends Controller
             return response()->json(['result' => null, 'message' => $e->getMessage(), 'status' => 5000]);
         }
     }
-
 }

@@ -2,7 +2,9 @@
     <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted">Copyright © Your Website 2023</div>
+                <div class="text-muted">Copyright © <a target="_blank" href="https://mohonsarker40.github.io/">Mohon
+                    Sarker</a>
+                    2024</div>
                 <div>
                     <a href="#">Privacy Policy</a>
 

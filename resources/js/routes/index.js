@@ -1,8 +1,8 @@
 import dashboardComponent from "../views/dashboardComponent.vue";
 import About from "../views/About";
-import categoryComponent from "../views/product/categoryComponent";
-import subCategoryComponent from "../views/product/subCategoryComponent";
-
+import Category from "../views/product/Category";
+import SubCategory from "../views/product/SubCategory";
+import Product from "../views/product/Product";
 
 const route = [
     {
@@ -16,16 +16,22 @@ const route = [
         component: About
     },
     {
-        path: '/admin/product/category',
+        path: '/admin/category',
         name : 'category',
-        component: categoryComponent,
+        component: Category,
         meta: {pageTitle: 'Category Table', dataUrl : 'api/categories'}
     },
     {
-        path: '/admin/product/sub_category',
+        path: '/admin/sub_category',
         name : 'sub_category',
-        component: subCategoryComponent,
+        component: SubCategory,
         meta: {pageTitle: 'SubCategory Table', dataUrl : 'api/sub_categories'}
+    },
+    {
+        path: '/admin/product',
+        name : 'product',
+        component: Product,
+        meta: {pageTitle: 'Product Table', dataUrl : 'api/product'}
     },
 ];
 

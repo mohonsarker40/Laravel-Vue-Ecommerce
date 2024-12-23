@@ -30,20 +30,20 @@ class ModuleTableSeeder extends Seeder
                     [
                         'name' => 'Category',
                         'key' => 'category',
-                        'link' => '/admin/product/category',
+                        'link' => '/admin/category',
                         'permission' => ['add', 'view', 'edit', 'delete'], // Specific permissions for Category
                     ],
                     [
                         'name' => 'SubCategory',
                         'key' => 'sub_category',
-                        'link' => '/admin/product/sub_category',
+                        'link' => '/admin/sub_category',
                         'permission' => ['add', 'view', 'edit', 'delete'], // Specific permissions for SubCategory
                     ],
                     [
-                        'name' => 'Products',
-                        'key' => 'products',
-                        'link' => '/admin/product/product',
-                        'permission' => ['add', 'view', 'edit', 'delete'], // Specific permissions for Products
+                        'name' => 'Product',
+                        'key' => 'product',
+                        'link' => '/admin/product',
+                        'permission' => ['add', 'view', 'edit', 'delete'], // Specific permissions for Product
                     ],
                 ],
             ],
